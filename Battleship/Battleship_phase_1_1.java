@@ -6,7 +6,6 @@ package Battleship;
  * Phase 3: A full version of battleship in which you and opponent set and destry battleships. 
  * Phase 4: Phase 1 + computer tries to sink your battleships.
  */
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,6 @@ public class Battleship_phase_1_1 {
     int i = 0, column, row, position = 0, number;
     String[][] coordinates = new String[10][10];
     int[][] X = new int[4][3], Y = new int[4][3];
-    //ArrayList<Integer> X = new ArrayList<>(), Y = new ArrayList<>(); 
     List<Integer> x = new ArrayList<>(), y = new ArrayList<>();
     private void horizontal()throws IOException{
         System.out.println("Enter a coordinate (x,y). If it hits a battleship, the specific location will show an 'X' else it will show an 'O'");
@@ -43,25 +41,7 @@ public class Battleship_phase_1_1 {
                 X[number][1] = X[number][position] + 1;
                 X[number][2] = X[number][position] + 2;
             }
-            System.out.println(X[number][0] +" " +Y[number][0]);
         }
-        /*
-        X.add((int) (Math.random() * 9));
-        Y.add((int) (Math.random() * 9));
-        if(X.get(0) == 9){
-        X.add(X.get(0) - 1);
-        X.add(X.get(0) + 1);
-        }
-        else if (X.get(0) == 10){
-        X.add(X.get(0) - 1);
-        X.add(X.get(0) - 2);
-        }
-        else{
-        X.add(X.get(0) + 1);
-        X.add(X.get(0) + 2);
-        }
-         */
-        //System.out.println(X.get(0) +" " +Y.get(0));
         while(i >= 0){
             input = hi.readLine();
             String[] coordinate = input.split(",");
@@ -125,25 +105,7 @@ public class Battleship_phase_1_1 {
                 Y[number][position + 1] = Y[number][position] + 1;
                 Y[number][position + 2] = Y[number][position] + 2;
             }
-            System.out.println(X[number][0]  +" " +Y[number][0]);
         }
-        /*
-        X.add((int) (Math.random() * 9));
-        Y.add((int) (Math.random() * 9));
-        if(Y.get(0) == 9){
-        Y.add(Y.get(0) - 1);
-        Y.add(Y.get(0) + 1);
-        }
-        else if (Y.get(0) == 10){
-        Y.add(Y.get(0) - 1);
-        Y.add(Y.get(0) - 2);
-        }
-        else{
-        Y.add(Y.get(0) + 1);
-        Y.add(Y.get(0) + 2);
-        }
-         */
-        //System.out.println(X.get(0) +" " +Y.get(0));
         while(i >= 0){
             input = hi.readLine();
             String[] coordinate = input.split(",");
