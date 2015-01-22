@@ -1,5 +1,6 @@
 /*
  * This program generates a random string with a length of 8 characters.
+ * If anyone would like to, they can design and write the code for their own gui and update this repository. 
  */
 package miscellaneous.stuff;
 import java.io.*;
