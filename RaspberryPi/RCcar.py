@@ -1,19 +1,20 @@
 import pygame, RCcarFunctions, time
-
 pygame.init()
-keypressed = pygame.key.get_pressed()
+RCcarFunctions.init()
 try:
   while True:
+   #RCcarFunctions.forward()
+    keypressed = pygame.key.get_pressed()
     if keypressed == "pygame.K_w":
-      carfunctions.forward()
+      RCcarFunctions.forward()
     elif keypressed  == "pygame.K_a":
-      carfunctions.spinleft()
+      RCcarFunctions.spinleft()
     elif keypressed == "pygame.K_s":
-      carfunctions.reverse()
+      RCcarFunctions.reverse()
     elif keypressed == "pygame.K_d":
-      carfunctions.spinright()
+      RCcarFunctions.spinright()
     elif keypressed == "pygame.K_ESCAPE": 
-      carfunctions.stop()
+      RCcarFunctions.stop()
     pygame.event.pump()
 except KeyboardInterrupt:
-  carfunctions.cleanup()
+  RCcarFunctions.cleanup()

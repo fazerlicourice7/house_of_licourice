@@ -18,7 +18,7 @@ def init():
 
 #creates a function which makes the car go forward
 def forward():
-  gpio.ouput(L0, True)
+  gpio.output(L0, True)
   gpio.output(L1, False)
   gpio.output(R0, True)
   gpio.output(R1, False)
@@ -59,5 +59,5 @@ def stop():
 
 # uninitializes all the gpio pins and returns all states to default
 def cleanup():
-  gpio.cleanup()
   stop()
+  gpio.cleanup()
