@@ -1,3 +1,7 @@
+/* LICENSING HEADER
+ * This is open source code, which means that it can be used for any purpose on any platform for free. The consequences of using this code shall not trace back to the creator.
+ * The original creator of this code[Fazer aka Vamshi Balanaga] shall be mentioned as such where ever this code is used and for whatever reason. 
+ */
 package Battleship;
 /*
  * This is a project in which I attempt to recreate the famous Battleship board game. It will eventually be able to play against another person and not just the computer.
@@ -10,21 +14,21 @@ import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+
 /*
  * @author fazer
  */
-
 public class Battleship_phase_2_client {
 
     BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
     //declare all global variables
     public static int PORT = 4444;
     String input, input2, hostName;
-    int i = 0, column, row, position = 0, number, some_number, another_number;
+    int i = 0, column, row, position = 0, number, hits = 0;
     String[][] coordinates = new String[10][10];
-    int[][] X = new int[4][3], Y = new int[4][3];
+    public static int[][] X = new int[4][3], Y = new int[4][3];
     List<Integer> x = new ArrayList<>(), y = new ArrayList<>();
-    int MISSILES = 50;
+    //Socket socket = new Socket(hostName, PORT);
 
     private void destroy_battleships() throws IOException {  //function that checks to see if the location you targeted is occupied by an enemy battleship
         //initializes 10x10 grid  
@@ -65,6 +69,7 @@ public class Battleship_phase_2_client {
                     //checks whether the target cooridnate coresponds with any of the enemies battleship's cooridnates
                     if (X[number][position] == (x.get(i)) && Y[number][position] == (y.get(i))) {
                         coordinates[x.get(i)][y.get(i)] = "X ";
+                        hits++; //counts hits on enemy battleships
                     } else if (coordinates[x.get(i)][y.get(i)].equals("X ")) {
 
                     } else {
@@ -94,12 +99,7 @@ public class Battleship_phase_2_client {
                 }
             }
             //counts number of hits on enemy battleships
-            for (some_number = 0; some_number < x.size(); some_number++) {
-                if (coordinates[x.get(some_number)][y.get(some_number)] == "X ") {
-                    another_number++;
-                }
-            }
-            if (another_number == 12) {
+            if (hits == 12) {
                 System.out.println("YOU WIN!");
                 break;
             }
@@ -159,12 +159,6 @@ public class Battleship_phase_2_client {
                     Y[number][whatever] = Integer.parseInt(coordinate[1]);
                 }
             }
-            /*for (int loop = 0; loop < 4; loop++) {
-                for (int loop2 = 0; loop2 < 3; loop2++) {
-                    System.out.println(X[loop][loop2] + " " + Y[loop][loop2]);
-                }
-                System.out.println();
-            }*/
             socket.shutdownInput(); // closes input stream
             obj.destroy_battleships(); // calls function to fire missiles 
         }
@@ -173,5 +167,12 @@ public class Battleship_phase_2_client {
     public static void main(String args[]) throws IOException, NumberFormatException {
         Battleship_phase_2_client obj = new Battleship_phase_2_client();
         obj.set_get();
+        //obj.destroy_battleships();
+        for (int initialization = 0; initialization < 4; initialization++) {
+            for (int init = 0; init < 3; init++) {
+                X[initialization][init] = 0;
+                Y[initialization][init] = 0;
+            }
+        }
     }
 }

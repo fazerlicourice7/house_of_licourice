@@ -21,13 +21,19 @@ public class Battleship_phase_2_server {
     //initialize all global variables
     public static int PORT = 4444;
     String input, input2;
-    int i = 0, column, row, position = 0, number, some_number, another_number;
+    int i = 0, column, row, position = 0, number, hits = 0;
     String[][] coordinates = new String[10][10];
-    int[][] X = new int[4][3], Y = new int[4][3];
+    public static int[][] X = new int[4][3], Y = new int[4][3];
     List<Integer> x = new ArrayList<>(), y = new ArrayList<>();
 
     private void destroy_battleships() throws IOException {//function that checks to see if the location you targeted is occupied by an enemy battleship
-        // initializes 10x10 grid
+        for (int loop = 0; loop < 4; loop++) {
+            for (int loop2 = 0; loop2 < 3; loop2++) {
+                System.out.println(X[loop][loop2] + " " + Y[loop][loop2]);
+            }
+            System.out.println();
+        }
+// initializes 10x10 grid
         for (column = 0; column < 10; column++) {
             for (row = 0; row < 10; row++) {
                 coordinates[row][column] = "~ ";
@@ -64,6 +70,7 @@ public class Battleship_phase_2_server {
                     System.out.println(X[number][position] + Y[number][position]);
                     if (X[number][position] == (x.get(i)) && Y[number][position] == (y.get(i))) { //checks if target location is occupied by enemy battleship 
                         coordinates[x.get(i)][y.get(i)] = "X "; //prints an X for a hit
+                        hits++; //counts hits on enemy battleships
                     } else if (coordinates[x.get(i)][y.get(i)].equals("X ")) {
 
                     } else {
@@ -93,12 +100,7 @@ public class Battleship_phase_2_server {
                 }
             }
             //counts number of hits on enemy battleships
-            for (some_number = 0; some_number < x.size(); some_number++) {
-                if (coordinates[x.get(some_number)][y.get(some_number)] == "X ") {
-                    another_number++;
-                }
-            }
-            if (another_number == 12) {
+            if (hits == 12) {
                 System.out.println("YOU WIN!");
                 break;
             }
@@ -127,12 +129,6 @@ public class Battleship_phase_2_server {
                     Y[number][whatever] = Integer.parseInt(coordinate[1]);
                 }
             }
-            /*for(int loop = 0; loop < 4; loop++){
-                for(int loop2 = 0;loop2 < 3; loop2++){
-                    System.out.println(X[loop][loop2] +" " +Y[loop][loop2]);
-                }
-                System.out.println();
-            }*/
             clientsocket.shutdownInput(); // closes input stream
             // initializes 10x10 grid
             for (column = 0; column < 10; column++) {
@@ -175,5 +171,11 @@ public class Battleship_phase_2_server {
     public static void main(String args[]) throws IOException, NumberFormatException { //main function of the program
         Battleship_phase_2_server obj = new Battleship_phase_2_server();
         obj.set_get();
+        for (int initialization = 0; initialization < 4; initialization++) {
+            for (int init = 0; init < 3; init++) {
+                X[initialization][init] = 0;
+                Y[initialization][init] = 0;
+            }
+        }
     }
 }
