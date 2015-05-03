@@ -20,10 +20,11 @@ import java.util.List;
  */
 public class Battleship_phase_2_client {
 
-    BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
+    public static BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
     //declare all global variables
     public static int PORT = 4444;
-    String input, input2, hostName;
+    String input, input2;
+    public static String hostName;
     int i = 0, column, row, position = 0, number, hits = 0;
     String[][] coordinates = new String[10][10];
     public static int[][] X = new int[4][3], Y = new int[4][3];
@@ -166,6 +167,8 @@ public class Battleship_phase_2_client {
 
     public static void main(String args[]) throws IOException, NumberFormatException {
         Battleship_phase_2_client obj = new Battleship_phase_2_client();
+        System.out.println("Enter the IP of the device to which you would like to connect.");
+        hostName = read.readLine();
         obj.set_get();
         //obj.destroy_battleships();
         for (int initialization = 0; initialization < 4; initialization++) {
