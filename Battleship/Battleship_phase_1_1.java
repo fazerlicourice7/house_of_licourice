@@ -10,7 +10,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * @author fazer
+ * @author fazerlicourice7
  */
 public class Battleship_phase_1_1 {
     BufferedReader hi = new BufferedReader (new InputStreamReader(System.in));
