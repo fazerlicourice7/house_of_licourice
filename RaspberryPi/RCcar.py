@@ -41,7 +41,7 @@ try:
     elif reverse:
       RCcarFunctions.reverse()
     elif right:
-      RCcarFunctions.right()
+      RCcarFunctions.spinright()
     else:
       RCcarFunctions.stop()
 except KeyboardInterrupt:
