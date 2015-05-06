@@ -1,6 +1,8 @@
 import pygame, RCcarFunctions
 
 pygame.init()
+pygame.display.init()
+pygame.display.set_mode((1280,720))
 RCcarFunctions.init()
 global forward, reverse, left, right
 forward = False
