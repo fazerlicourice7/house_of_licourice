@@ -35,16 +35,24 @@ try:
   while True:
     keyp = readkey()
     if keyp == 'w':
+      print("accelerating")
       RCcarFunctions.forward()
     elif keyp == 's':
+      print("reversing")
       RCcarFunctions.reverse()
     elif keyp == 'a':
+      print("turning left")
       RCcarFunctions.spinleft()
     elif keyp == 'd':
+      print("turning right")
       RCcarFunctions.spinright()
     elif keyp == ' ':
+      print("braking")
       RCcarFunctions.brake()
     else:
+      print("stoppping")
       RCcarFunctions.stop()
-except KeyboardInterrupt:
+      break
+finally:
+  print("cleaning up")
   RCcarFunctions.cleanup()
