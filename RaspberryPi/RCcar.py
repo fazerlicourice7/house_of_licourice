@@ -1,8 +1,11 @@
-import pygame, RCcarFunctions
+import pygame, RCcarFunctions, os
 RCcarFunctions.init()
 global forward, reverse, left, right
 forward, reverse, left, right = False, False, False, False
 pygame.init()
+driver = 'directfb'
+if not os.getenv('SDL_VIDEODRIVER'):
+  os.putenv('SDL_VIDEODRIVER', driver)
 pygame.display.init()
 size = (pygame.display.Info().current_w, pygame.display.Info().current_h)
 pygame.display.set_mode((size), pygame.FULLSCREEN)
@@ -10,7 +13,7 @@ pygame.key.set_repeat(500,10)
 print ("Succesfully initialized")
 try:
   while True:
-   #RCcarFunctions.forward()
+    #RCcarFunctions.forward()
     keypressed = pygame.key.get_pressed()
     for event in pygame.event.get():
       if event.type == pygame.KEYDOWN:
