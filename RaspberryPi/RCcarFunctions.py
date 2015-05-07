@@ -78,3 +78,16 @@ def stop():
 def cleanup():
   stop()
   gpio.cleanup()
+
+init()
+
+forward()
+time.sleep(2)
+reverse()
+time.sleep(2)
+left()
+time.sleep(2)
+right()
+time.sleep(2)
+
+cleanup()
