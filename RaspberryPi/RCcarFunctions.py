@@ -66,17 +66,21 @@ def right():
   right0.ChangeDutyCycle(60)
   right1.ChangeDutyCycle(0)
 
-#stops the car by not supplying a current to the motors
-def stop():
-  left0.ChangeDutyCycle()
-  left1.ChangeDutyCycle()
-  right0.ChangeDutyCycle()
-  right1.ChangeDutyCycle()
+#stops the car by the current supplied to the motors to 0
+def brake():
+  left0.ChangeDutyCycle(0)
+  left1.ChangeDutyCycle(0)
+  right0.ChangeDutyCycle(0)
+  right1.ChangeDutyCycle(0)
 
-#uninitializes all the gpio pins and returns all states to default
-def cleanup():
+#stops all the pwm outputs going to the motors
+def stop():
   left0.stop()
   left1.stop()
   right0.stop()
   right1.stop()
+
+#uninitializes all the gpio pins and returns all states to default
+def cleanup():
+  stop()
   gpio.cleanup()
