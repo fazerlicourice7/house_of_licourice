@@ -1,4 +1,7 @@
-import RCcarFunctions as RCcar, time
+import RCcarFunctions as RCcar
+import time
+
+RCcar.init()
 while True:
   RCcar.forward()
   time.sleep(2)

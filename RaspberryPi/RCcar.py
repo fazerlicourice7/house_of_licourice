@@ -1,14 +1,15 @@
 import pygame, RCcarFunctions
-
 pygame.init()
-pygame.display.init()
-pygame.display.set_mode((1280,720))
+#pygame.display.init()
+#pygame.display.set_mode((1280,720))
+pygame.key.set_repeat(500, 10)
 RCcarFunctions.init()
 global forward, reverse, left, right
 forward = False
 left = False
 reverse = False
 right = False
+print ("Succesfully initialized")
 try:
   while True:
    #RCcarFunctions.forward()
@@ -32,6 +33,8 @@ try:
           reverse = False
         elif event.key == pygame.K_d:
           right = False
+      elif event.type == pygame.QUIT:
+        RCcarFunctions.cleanup()
     if forward & right:
       RCcarFunctions.right()
     elif forward & left:
