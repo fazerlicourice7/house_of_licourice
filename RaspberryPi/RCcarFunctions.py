@@ -43,13 +43,13 @@ def spinleft():
   left0.ChangeDutyCycle(0)
   left1.ChangeDutyCycle(100)
   right0.ChangeDutyCycle(100)
-  right1.ChageDutyCycle(0)
+  right1.ChangeDutyCycle(0)
 
 #makes car spin right
 def spinright():
   left0.ChangeDutyCycle(100)
   left1.ChangeDutyCycle(0)
-  right0.CHangeDutyCycle(0)
+  right0.ChangeDutyCycle(0)
   right1.ChangeDutyCycle(100)
 
 #makes car diagonally to the front (and left)
