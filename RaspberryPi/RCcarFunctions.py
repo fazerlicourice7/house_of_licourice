@@ -1,10 +1,10 @@
 # This is a library of functions for a remote controlled car made with the raspberry pi.
 
 import RPi.GPIO as gpio
-L0 = 5  #left motor: connection 0
-L1 = 6  #left motor: connection 1
-R0 = 10  #right motor: connection 0
-R1 = 9  #right motor: connection 1
+L0 = 6  #left motor: connection 0
+L1 = 5  #left motor: connection 1
+R0 = 9  #right motor: connection 0
+R1 = 10  #right motor: connection 1
 
 #initializes required gpio pins as outputs 
 def init():
