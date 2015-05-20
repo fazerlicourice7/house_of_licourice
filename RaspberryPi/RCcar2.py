@@ -1,6 +1,7 @@
 import RCcarFunctions, termios, os, sys
 import tty
 
+# stuff I don't understand
 UP = 0
 DOWN = 1
 RIGHT = 2
