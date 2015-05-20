@@ -1,3 +1,7 @@
+/* LICENSING HEADER
+ * This is open source code, which means that it can be used for any purpose on any platform for free. The consequences of using this code shall not trace back to the creator.
+ * The original creator of this code[Fazer aka Vamshi Balanaga] shall be mentioned as such where ever this code is used and for whatever reason. 
+ */
 package Battleship;
 /*
  *This is a project in which I attempt to recreate the famous Battleship board game. It will eventually be able to play against another person and not just the computer.
@@ -27,13 +31,7 @@ public class Battleship_phase_2_server {
     List<Integer> x = new ArrayList<>(), y = new ArrayList<>();
 
     private void destroy_battleships() throws IOException {//function that checks to see if the location you targeted is occupied by an enemy battleship
-        for (int loop = 0; loop < 4; loop++) {
-            for (int loop2 = 0; loop2 < 3; loop2++) {
-                System.out.println(X[loop][loop2] + " " + Y[loop][loop2]);
-            }
-            System.out.println();
-        }
-// initializes 10x10 grid
+        // initializes 10x10 grid
         for (column = 0; column < 10; column++) {
             for (row = 0; row < 10; row++) {
                 coordinates[row][column] = "~ ";

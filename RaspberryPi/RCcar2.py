@@ -43,10 +43,10 @@ try:
       RCcarFunctions.reverse()
     elif keyp == 'a':
       print("turning left")
-      RCcarFunctions.spinleft()
+      RCcarFunctions.left()
     elif keyp == 'd':
       print("turning right")
-      RCcarFunctions.spinright()
+      RCcarFunctions.right()
     elif keyp == ' ':
       print("braking")
       RCcarFunctions.brake()

@@ -54,7 +54,7 @@ def spinright():
 
 #makes car diagonally to the front (and left)
 def left():
-  left0.ChangeDutyCycle(60)
+  left0.ChangeDutyCycle(0)
   left1.ChangeDutyCycle(0)
   right0.ChangeDutyCycle(100)
   right1.ChangeDutyCycle(0)
@@ -63,9 +63,9 @@ def left():
 def right():
   left0.ChangeDutyCycle(100)
   left1.ChangeDutyCycle(0)
-  right0.ChangeDutyCycle(60)
+  right0.ChangeDutyCycle(0)
   right1.ChangeDutyCycle(0)
-
+  
 #stops the car by the current supplied to the motors to 0
 def brake():
   left0.ChangeDutyCycle(0)
