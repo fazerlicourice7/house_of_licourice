@@ -1,10 +1,10 @@
 # This is a library of functions for a remote controlled car made with the raspberry pi.
-
+import time
 import RPi.GPIO as gpio
-L0 = 6  #left motor: connection 0
-L1 = 5  #left motor: connection 1
-R0 = 9  #right motor: connection 0
-R1 = 10  #right motor: connection 1
+L1 = 6  #left motor: connection 0
+L0 = 5  #left motor: connection 1
+R1 = 9  #right motor: connection 0
+R0 = 10  #right motor: connection 1
 
 #initializes required gpio pins as outputs 
 def init():
@@ -54,18 +54,22 @@ def spinright():
 
 #makes car diagonally to the front (and left)
 def left():
-  left0.ChangeDutyCycle(0)
+  left0.ChangeDutyCycle(10)
   left1.ChangeDutyCycle(0)
   right0.ChangeDutyCycle(100)
   right1.ChangeDutyCycle(0)
+  time.sleep(1)
+  left0.ChangeDutyCycle(100)
 
 #makes car go diagonally to the front (and right)
 def right():
   left0.ChangeDutyCycle(100)
   left1.ChangeDutyCycle(0)
-  right0.ChangeDutyCycle(0)
+  right0.ChangeDutyCycle(10)
   right1.ChangeDutyCycle(0)
-  
+  time.sleep(1)
+  right0.ChangeDutyCycle(100)
+ 
 #stops the car by the current supplied to the motors to 0
 def brake():
   left0.ChangeDutyCycle(0)
