@@ -1,10 +1,11 @@
 /* LICENSING HEADER
- * This is open source code, which means that it can be used for any purpose on any platform for free. The consequences of using this code shall not trace back to the creator.
- * The original creator of this code[Fazer aka Vamshi Balanaga] shall be mentioned as such where ever this code is used and for whatever reason. 
+ * This is open source code, which means that it can be used for any purpose on any platform for free. The consequences of using this code shall 
+ * not trace back to the creator.
+ * The original creator of this code[Fazerlicourice71256 aka Vamshi Balanaga] shall be mentioned as such where ever this code is used and for whatever reason. 
  */
 package Battleship;
 /*
- * This is a project in which I attempt to recreate the famous Battleship board game. It will eventually be able to play against another person and not just the computer.
+ * This is a project in which I attempt to recreate the famous Battleship board game. 
  * Phase 1: try to sink the computer's battleship(s)
  * Phase 2: A full version of battleship in which two players set and destroy respective battleships. 
  * Phase 3: Phase 1 + computer tries to sink your battleships. I will attempt to create an AI that learns and adapts to the situations in game.
@@ -16,13 +17,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
- * @author fazer
+ * @author fazerlicourice71256
  */
 public class Battleship_phase_2_client {
 
     public static BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
     //declare all global variables
-    public static int PORT = 4444;
+    public static int PORT = 12345;
     String input, input2;
     public static String hostName;
     int i = 0, column, row, position = 0, number, hits = 0;
@@ -60,14 +61,20 @@ public class Battleship_phase_2_client {
         //starts asking for target locations.
         System.out.println("Enter a coordinate (x,y). If it hits a battleship, the specific location will show an 'X' else it will show an 'O'");
         while (i >= 0) {
+            String[] coordinate;
             input = read.readLine();
-            String[] coordinate = input.split(",");
-            x.add(Integer.parseInt(coordinate[0]));
-            y.add(Integer.parseInt(coordinate[1]));
+            coordinate = input.split(",");
+            try { //failsafe for incorrect input
+                x.add(Integer.parseInt(coordinate[0]));
+                y.add(Integer.parseInt(coordinate[1]));
+            } catch (NumberFormatException e) {
+                System.err.println("There was an error in the coordinate you entered." + "[" + e + "]" + "\nPlease Try again: " + "\n");
+                continue;
+            }
             for (number = 0; number < 4; number++) {
                 for (position = 0; position < 3; position++) {
                     System.out.println(X[number][position] + Y[number][position]);
-                    //checks whether the target cooridnate coresponds with any of the enemies battleship's cooridnates
+                    //checks whether the target cooridnate corresponds with any of the enemies battleship's cooridnates
                     if (X[number][position] == (x.get(i)) && Y[number][position] == (y.get(i))) {
                         coordinates[x.get(i)][y.get(i)] = "X ";
                         hits++; //counts hits on enemy battleships
@@ -138,7 +145,7 @@ public class Battleship_phase_2_client {
             //writes location of user's battleships to the socket
             System.out.println("Enter the coordinates of your battleships (in the format: x,y x,y x,y)(4 battleships, each with a length of 3, either horizontal or vertical ONLY!)");
             ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream()); //opens output stream
-            for (int i = 0; i < 4; i++) {
+            for (int lv = 0; lv < 4; lv++) {
                 input = read.readLine();
                 out.writeUTF(input); // writes to output stream
                 out.flush(); //flushes to force write
