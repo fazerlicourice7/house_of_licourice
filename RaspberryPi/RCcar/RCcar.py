@@ -1,11 +1,8 @@
-import pygame, RCcarFunctions, os
+import pygame, RCcarFunctions
 RCcarFunctions.init()
 global forward, reverse, left, right
 forward, reverse, left, right = False, False, False, False
 pygame.init()
-driver = 'directfb'
-if not os.getenv('SDL_VIDEODRIVER'):
-  os.putenv('SDL_VIDEODRIVER', driver)
 pygame.display.init()
 size = (pygame.display.Info().current_w, pygame.display.Info().current_h)
 pygame.display.set_mode((size), pygame.FULLSCREEN)
@@ -19,29 +16,21 @@ try:
       if event.type == pygame.KEYDOWN:
         if keypressed[pygame.K_w]:
           forward = True
-        else:
-          forward = False
         if keypressed[pygame.K_a]:
           left = True
-        else:
-          left = False
         if keypressed[pygame.K_s]:
           reverse = True
-        else:
-          reverse = False 
         if keypressed[pygame.K_d]:
           right = True
-        else:
+      elif event.type == pygame.KEYUP:
+        if event.key == pygame.K_w:
+          forward = False
+        elif event.key == pygame.K_a:
+          left = False
+        elif event.key == pygame.K_s:
+          reverse = False
+        elif event.key == pygame.K_d:
           right = False
-      #elif event.type == pygame.KEYUP:
-        #if event.key == pygame.K_w:
-          #forward = False
-        #elif event.key == pygame.K_a:
-          #left = False
-        #elif event.key == pygame.K_s:
-          #reverse = False
-        #elif event.key == pygame.K_d:
-          #right = False
       elif event.type == pygame.QUIT:
         RCcarFunctions.cleanup()
         pygame.quit()
@@ -51,12 +40,12 @@ try:
       RCcarFunctions.left()
     elif forward:
       RCcarFunctions.forward()
-    elif left:
-      RCcarFunctions.spinleft()
+    #elif left:
+      #RCcarFunctions.spinleft()
     elif reverse:
       RCcarFunctions.reverse()
-    elif right:
-      RCcarFunctions.spinright()
+    #elif right:
+      #RCcarFunctions.spinright()
     else:
       RCcarFunctions.brake()
 except KeyboardInterrupt:
