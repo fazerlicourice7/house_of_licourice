@@ -4,8 +4,8 @@ global forward, reverse, left, right
 forward, reverse, left, right = False, False, False, False
 pygame.init()
 pygame.display.init()
-size = (pygame.display.Info().current_w, pygame.display.Info().current_h)
-pygame.display.set_mode((size), pygame.FULLSCREEN)
+size = (640x480)
+pygame.display.set_mode((size))
 pygame.key.set_repeat(500,10)
 print ("Succesfully initialized")
 try:
