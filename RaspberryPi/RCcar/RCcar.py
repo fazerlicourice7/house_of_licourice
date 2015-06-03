@@ -4,11 +4,7 @@ global forward, reverse, left, right
 forward, reverse, left, right = False, False, False, False
 pygame.init()
 pygame.display.init()
-<<<<<<< HEAD
 size = (640,480)
-=======
-size = (640x480)
->>>>>>> c6a74879eb6b2169bdba3592e6d05fd93e0638ed
 pygame.display.set_mode((size))
 pygame.key.set_repeat(500,10)
 print ("Succesfully initialized")
@@ -44,12 +40,12 @@ try:
       RCcarFunctions.left()
     elif forward:
       RCcarFunctions.forward()
-    #elif left:
-      #RCcarFunctions.spinleft()
+    elif left:
+      RCcarFunctions.left()
     elif reverse:
       RCcarFunctions.reverse()
-    #elif right:
-      #RCcarFunctions.spinright()
+    elif right:
+      RCcarFunctions.right()
     else:
       RCcarFunctions.brake()
 except KeyboardInterrupt:

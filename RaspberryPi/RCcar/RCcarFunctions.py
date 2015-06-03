@@ -9,7 +9,7 @@ SERVO = 18 #servo motor for steering
 
 #initializes required gpio pins as outputs 
 def init():
-  global left0, left1, right0, right1, SERVO
+  global left0, left1, right0, right1, servo
   gpio.setmode(gpio.BCM)  # using the official GPIO numbering
   gpio.setwarnings(False)  
   gpio.setup(L0, gpio.OUT)
