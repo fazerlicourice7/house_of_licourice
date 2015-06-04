@@ -1,6 +1,7 @@
 # This is a library of functions for a remote controlled car made with the raspberry pi.
 #import time
 import RPi.GPIO as gpio
+
 L1 = 9  #left motor: connection 0
 L0 = 10  #left motor: connection 1
 R1 = 6  #right motor: connection 0

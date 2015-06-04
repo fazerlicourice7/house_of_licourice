@@ -1,4 +1,5 @@
-import pygame, RCcarFunctions
+import pygame
+import RCcarFunctions
 RCcarFunctions.init()
 global forward, reverse, left, right
 forward, reverse, left, right = False, False, False, False
