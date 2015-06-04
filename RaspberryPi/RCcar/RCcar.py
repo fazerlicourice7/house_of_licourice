@@ -38,14 +38,16 @@ try:
       RCcarFunctions.right()
     elif forward & left:
       RCcarFunctions.left()
-    elif forward:
-      RCcarFunctions.forward()
     elif left:
       RCcarFunctions.left()
-    elif reverse:
-      RCcarFunctions.reverse()
     elif right:
       RCcarFunctions.right()
+    elif forward:
+      RCcarFunctions.forward()
+      RCcarFunctions.straight()
+    elif reverse:
+      RCcarFunctions.reverse()
+      RCcarFunctions.straight()
     else:
       RCcarFunctions.brake()
 except KeyboardInterrupt:

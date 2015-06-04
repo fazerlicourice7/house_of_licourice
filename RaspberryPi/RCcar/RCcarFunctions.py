@@ -78,6 +78,10 @@ def right():
   #right0.ChangeDutyCycle(100)
   servo.ChangeDutyCycle(9.5)
 
+#resets the servo's position to face straight
+def straight():
+  servo.ChangeDutyCycle(10.75)
+
 #reduces the current supplied to the motors to 0
 def brake():
   left0.ChangeDutyCycle(0)
