@@ -1,0 +1,1 @@
+This directory contains the source code that will be released as a full fledged app over time, in the play store and on linux distros. It will be available to download for free, the play store version will feature advertisments. There will also be a premium version on the play store that will not have any advertisements.
