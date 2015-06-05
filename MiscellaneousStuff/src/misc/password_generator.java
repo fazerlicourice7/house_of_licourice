@@ -1,8 +1,7 @@
 /*
  * This program generates a random string with a length of 8 characters.
- * If anyone would like to, they can design and write the code for their own gui and update this repository. 
  */
-package miscellaneous.stuff;
+package misc;
 import java.io.*;
 import java.util.Random;
 /**
@@ -11,7 +10,7 @@ import java.util.Random;
 public class password_generator extends javax.swing.JFrame {
    
     BufferedReader hi = new BufferedReader (new InputStreamReader (System.in));
-    char one, two, three, four, five, six, seven, eight;
+    char one, two, three, four, five, six, seven, eight, nine, ten;
     char array[] = {one, two, three, four, five, six, seven, eight};
     String password = new String(array);
     public password_generator() {
@@ -89,8 +88,10 @@ public class password_generator extends javax.swing.JFrame {
         six = xyz.charAt(r.nextInt(xyz.length()));
         seven = xyz.charAt(r.nextInt(xyz.length()));
         eight = xyz.charAt(r.nextInt(xyz.length()));
+        nine = xyz.charAt(r.nextInt(xyz.length()));
+        ten = xyz.charAt(r.nextInt(xyz.length()));
         
-        char array[] = {one, two, three, four, five, six, seven, eight};
+        char array[] = {one, two, three, four, five, six, seven, eight, nine, ten};
         
         String password = new String(array);
         

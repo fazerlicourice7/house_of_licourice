@@ -10,12 +10,12 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * @author fazerlicourice7
+ * @author fazer
  */
 public class Battleship_phase_1_1 {
     BufferedReader hi = new BufferedReader (new InputStreamReader(System.in));
     String input;
-    int i = 0, column, row, position = 0, number;
+    int i = 0, column, row, position = 0, number, some_number, another_number;
     String[][] coordinates = new String[10][10];
     int[][] X = new int[4][3], Y = new int[4][3];
     List<Integer> x = new ArrayList<>(), y = new ArrayList<>();
@@ -41,6 +41,7 @@ public class Battleship_phase_1_1 {
                 X[number][1] = X[number][position] + 1;
                 X[number][2] = X[number][position] + 2;
             }
+            System.out.println(X[number][0] +" " +Y[number][0]);
         }
         while(i >= 0){
             input = hi.readLine();
@@ -53,7 +54,7 @@ public class Battleship_phase_1_1 {
                         coordinates[x.get(i)][y.get(i)] = "X ";
                     }
                     else if(coordinates[x.get(i)][y.get(i)].equals("X ")){
-                        
+
                     }
                     else{
                         coordinates[x.get(i)][y.get(i)] = "O ";    
@@ -61,6 +62,7 @@ public class Battleship_phase_1_1 {
                 }
             }
             i++;
+            System.out.println("Guess:" +i);
             for (column = -1; column < 10; column++){
                 if(column > -1){
                     System.out.print(column +" "); 
@@ -80,6 +82,13 @@ public class Battleship_phase_1_1 {
                     System.out.println("");
                 }
             }
+            for(some_number = 0; some_number < x.size(); some_number++){                  
+                if(coordinates[x.get(some_number)][y.get(some_number)] == "X "){
+                    another_number++;
+                }
+            }
+            if(another_number == 12)
+            break;
         }
     }
     private void vertical()throws IOException{
@@ -105,6 +114,7 @@ public class Battleship_phase_1_1 {
                 Y[number][position + 1] = Y[number][position] + 1;
                 Y[number][position + 2] = Y[number][position] + 2;
             }
+            System.out.println(X[number][0] +" " +Y[number][0]);
         }
         while(i >= 0){
             input = hi.readLine();
@@ -117,7 +127,7 @@ public class Battleship_phase_1_1 {
                         coordinates[x.get(i)][y.get(i)] = "X ";
                     }
                     else if(coordinates[x.get(i)][y.get(i)].equals("X ")){
-                        
+
                     }
                     else {
                         coordinates[x.get(i)][y.get(i)] = "O ";    
@@ -125,6 +135,7 @@ public class Battleship_phase_1_1 {
                 }
             }
             i++;
+            System.out.println("Guess:" +i);
             for (column = -1; column < 10; column++){
                 if(column > -1){
                     System.out.print(column +" ");
@@ -144,6 +155,13 @@ public class Battleship_phase_1_1 {
                     System.out.println();
                 }
             }
+            for(some_number = 0; some_number < x.size(); some_number++){                  
+                if(coordinates[x.get(some_number)][y.get(some_number)] == "X "){
+                    another_number++;
+                }
+            }
+            if(another_number == 12)
+            break;
         }
     }
     public static void main(String args[])throws IOException{
