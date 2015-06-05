@@ -9,7 +9,7 @@ house_of_licourice/Battleship:
     This app, once finished will be released on linux through apt-get and on Google Play Store. Future support for
     iOS is planned.
 
-house_of_licourice/Miscellaneous:
+house_of_licourice/MiscellaneousStuff:
     This directory contains all my various java projects, done at school and/or for friends.
 
 house_of_licourice/RaspberryPi:
