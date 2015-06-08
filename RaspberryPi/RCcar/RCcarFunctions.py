@@ -29,7 +29,7 @@ def init():
   right0.start(0)
   right1.start(0)
   #starts the servo motor output at 10.75%
-  servo.start(10.75)
+  servo.start(11)
 
 #creates a function which makes the car go forward
 def forward():
@@ -67,7 +67,7 @@ def left():
   #right1.ChangeDutyCycle(0)
   #time.sleep(1)
   #left0.ChangeDutyCycle(100)
-  servo.ChangeDutyCycle(12)
+  servo.ChangeDutyCycle(15)
 
 #makes car go diagonally to the front (and right)
 def right():
@@ -77,11 +77,11 @@ def right():
   #right1.ChangeDutyCycle(0)
   #time.sleep(1)
   #right0.ChangeDutyCycle(100)
-  servo.ChangeDutyCycle(9.5)
+  servo.ChangeDutyCycle(9)
 
 #resets the servo's position to face straight
 def straight():
-  servo.ChangeDutyCycle(10.75)
+  servo.ChangeDutyCycle(11)
 
 #reduces the current supplied to the motors to 0
 def brake():
@@ -96,7 +96,7 @@ def stop():
   left1.stop()
   right0.stop()
   right1.stop()
-  servo.ChangeDutyCycle(10.75)
+  servo.ChangeDutyCycle(11)
   servo.stop()
 
 #uninitializes all the gpio pins and returns all states to default
