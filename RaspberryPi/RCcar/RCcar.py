@@ -1,4 +1,4 @@
-import pygame
+import pygame, time
 import RCcarFunctions
 RCcarFunctions.init()
 global forward, reverse, left, right
@@ -11,7 +11,6 @@ pygame.key.set_repeat(500,10)
 print ("Succesfully initialized")
 try:
   while True:
-    #RCcarFunctions.forward()
     keypressed = pygame.key.get_pressed()
     for event in pygame.event.get():
       if event.type == pygame.KEYDOWN:
@@ -51,6 +50,8 @@ try:
       RCcarFunctions.straight()
     else:
       RCcarFunctions.brake()
+      RCcarFunctions.straight()
+    time.sleep(0.001)
 except KeyboardInterrupt:
   print ("\ncleaning up")
   RCcarFunctions.cleanup()
