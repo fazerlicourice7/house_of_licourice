@@ -51,7 +51,7 @@ try:
     else:
       RCcarFunctions.brake()
       RCcarFunctions.straight()
-    time.sleep(0.001)
+    time.sleep(0.01)
 except KeyboardInterrupt:
   print ("\ncleaning up")
   RCcarFunctions.cleanup()
