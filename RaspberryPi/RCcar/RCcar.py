@@ -16,11 +16,11 @@ try:
       if event.type == pygame.KEYDOWN:
         if keypressed[pygame.K_w]:
           forward = True
-        if keypressed[pygame.K_a]:
-          left = True
-        if keypressed[pygame.K_s]:
+        elif keypressed[pygame.K_s]:
           reverse = True
-        if keypressed[pygame.K_d]:
+        elif keypressed[pygame.K_a]:
+          left = True
+        elif keypressed[pygame.K_d]:
           right = True
       elif event.type == pygame.KEYUP:
         if event.key == pygame.K_w:
@@ -49,9 +49,9 @@ try:
       RCcarFunctions.reverse()
       RCcarFunctions.straight()
     else:
-      RCcarFunctions.brake()
       RCcarFunctions.straight()
-    time.sleep(0.1)
+      RCcarFunctions.brake()
+    time.sleep(0.5)
 except KeyboardInterrupt:
   print ("\ncleaning up")
   RCcarFunctions.cleanup()
