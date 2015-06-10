@@ -28,7 +28,7 @@ def init():
   left1.start(0)
   right0.start(0)
   right1.start(0)
-  #starts the servo motor output at 10.75%
+  #starts the servo motor output at 11%
   servo.start(11)
 
 #creates a function which makes the car go forward
