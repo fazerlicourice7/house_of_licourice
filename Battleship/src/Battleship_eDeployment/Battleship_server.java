@@ -19,40 +19,54 @@ package Battleship_eDeployment;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * @author fazerlicourice71256
  */
 
 /**
- * This is the server side of an application called Battleships. 
- * It is a virtual recreation of the board game battleship. This is a turn based game in which two players first set the
- * locations of their battleships, then try to calculate and/or guess the location of the opponents battleships. 
- * 
- * Each player has to set five battleships either horizontally or vertically. They 
- * cannot overlap any other of the same player's ships. One battleship is 2 'grid coordinates long' 
- * (from here on grid coordinates will be referred to as points). Two battleships have three points, 
- * one battleship has four points and the last battleship has five points.
- * 
- * The players take turns guessing and/or calculating the location of the opponents battleships, and fire 'missiles' at the targeted location
- * and both players get feedback as to whether their shot hit or missed and whether any of their ships were hit or not.
- * 
- * 
+ * This is the server side of an application called Battleships. It is a virtual
+ * recreation of the board game battleship. This is a turn based game in which
+ * two players first set the locations of their battleships, then try to
+ * calculate and/or guess the location of the opponents battleships.
+ *
+ * Each player has to set five battleships either horizontally or vertically.
+ * They cannot overlap any other of the same player's ships. One battleship is 2
+ * 'grid coordinates long' (from here on grid coordinates will be referred to as
+ * points). Two battleships have three points, one battleship has four points
+ * and the last battleship has five points.
+ *
+ * The players take turns guessing and/or calculating the location of the
+ * opponents battleships, and fire 'missiles' at the targeted location and both
+ * players get feedback as to whether their shot hit or missed and whether any
+ * of their ships were hit or not.
+ *
+ *
  */
 public class Battleship_server {
+
     //initializes integer PORT with the value if the port on which the server listens.
+
+    static ArrayList<Thread> list = new ArrayList<>();
     static int PORT = 12345;
-    static Socket client1;
-    
-    public static void main(String[] args) throws IOException {
+    static Socket client;
+    static Battleship_serverThread client1;
+    public static synchronized void main(String[] args) throws IOException {
         //creates a loop that re-iterates forever(while the program is running).
         while (true) {
             //creates a ServerSocket that listens for requests on port:PORT
             try (
                     ServerSocket serversocket = new ServerSocket(PORT);) {
                 //spawns a new thread each time a client connects
-                (new Battleship_eDeployment.Battleship_serverThread(client1 = serversocket.accept())).start();
-                System.out.println("Connection established");
+                client = serversocket.accept();
+                /*list.add(*/client1 = new Battleship_eDeployment.Battleship_serverThread(client)/*)*/;
+                client1.start();
+                //System.out.println("Connection established");
             }
         }
+        
     }
 }

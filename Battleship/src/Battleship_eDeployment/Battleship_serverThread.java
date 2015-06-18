@@ -26,65 +26,38 @@ import java.util.logging.Logger;
  * @author fazerlicourice71256
  */
 public class Battleship_serverThread extends Thread {
-
-    //initializing required variables
-    BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
-    private static Socket client1, client2;
-    public static int PORT;
-    String[][] coordinates1 = new String[10][10]; //holds the state of each location on client1's grid(ie. client2's target grid)
-    String[][] coordinates2 = new String[10][10]; //holds the state of each location on client2's grid(ie. client1's target grid)
-    /*
-     * String arrays to hold the coordinates of each of the battleships. 
-     * The first number represents the client number.
-     * The second number represents the ship number of the respective client.
-     * The first ship will be two points long.
-     * The second and third ships will be three points long.
-     * The fourth ship will be three points long.
-     * The fifth ship will be five points long.
-     */
-    String[] ship11 = new String[2], ship12 = new String[3], ship13 = new String[3], ship14 = new String[4], ship15 = new String[5];
-    String[] ship21 = new String[2], ship22 = new String[3], ship23 = new String[3], ship24 = new String[4], ship25 = new String[5];
+    
+    public final Socket client1;
+    public Socket client2;
+    public int PORT;
+    private Object Battleship_eDeployment;
 
     Battleship_serverThread(Socket client1) {
-        super("Battleship_ServerThread");
+        super("Battleship_serverThread");
         this.client1 = client1;
     }
 
     //run method
     @Override
-    public void run() {
-        //creates a serversocket and listens for a connection
+    public synchronized void run() {
         try (
-                ServerSocket serversocket = new ServerSocket(PORT);) {
-            //accepts first client to make a request
+                ServerSocket serversocket = new ServerSocket(PORT)) {
             client2 = serversocket.accept();
-            //catches an Input/Output exception if any, and displays the message: There was an error connecting to the client"
-        } catch (IOException ex) {
-            System.err.println("There was an error connecting to the client:" + ex);
+            int player = 2;
+            Runnable CLIENT2 = new Battleship_eDeployment.Battleship_server_clientThread(client2, player);
+            new Thread(CLIENT2).start();
         }
-        //attempts to initialize Object input and Object output streams to both clients.
-        try {//initializes input stream between this thread and the first client
-            ObjectInputStream in1 = new ObjectInputStream(client1.getInputStream());
-        } catch (IOException ex) {
+        catch (IOException ex) {
             Logger.getLogger(Battleship_serverThread.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        finally {
+            int player = 1;
+            Runnable CLIENT1;
+            CLIENT1 = new Battleship_eDeployment.Battleship_server_clientThread(client1, player);
+            new Thread(CLIENT1).start();
         }
-        try { //initializes input stream between this thread and the second client
-            ObjectInputStream in2 = new ObjectInputStream(client2.getInputStream());
-        } catch (IOException ex) {
-            Logger.getLogger(Battleship_serverThread.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {//initializes output stream between this thread and the first client
-            ObjectOutputStream out1 = new ObjectOutputStream(client1.getOutputStream());
-        } catch (IOException ex) {
-            Logger.getLogger(Battleship_serverThread.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {//initializes output stream between this thread and the second client
-            ObjectOutputStream out2 = new ObjectOutputStream(client2.getOutputStream());
-        } catch (IOException ex) {
-            Logger.getLogger(Battleship_serverThread.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //requests the locations of each client's battleships 
-
-        //game loop:consecutively asks each client to target a location and conveys the relevent information to each client
+        
+        
+        
     }
 }
