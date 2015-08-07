@@ -8,12 +8,12 @@ import java.io.*;
 public class anagram_finder {
 
     static BufferedReader READ = new BufferedReader(new InputStreamReader(System.in));
-    FileReader readFile;
-    BufferedReader READFILE = new BufferedReader(readFile);
+    //FileReader readFile;
+    //BufferedReader READFILE = new BufferedReader(readFile);
 
-    public anagram_finder() throws FileNotFoundException {
+    /*public anagram_finder() throws FileNotFoundException {
         this.readFile = new FileReader("lowercase100k.txt");
-    }
+    }*/
 
     public static void main(String args[]) throws IOException {
         System.out.println("Enter a word");

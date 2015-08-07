@@ -29,7 +29,7 @@ public class anagram_Maker {
         String word = new String();
         while (word != null) {
             word = READFILE.readLine();
-            word.
+           
         }
     }
 
