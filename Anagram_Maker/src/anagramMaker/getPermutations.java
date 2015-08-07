@@ -5,24 +5,29 @@
  */
 package anagramMaker;
 
+import java.util.ArrayList;
+
 /**
- *
  * @author fazer
  */
 public class getPermutations {
 
-    public static String permutations(String input) {
+    static ArrayList<String> permutation = new ArrayList<>();
+
+    public static ArrayList permutations(String input) {
         int length = input.length();
         for (int loop = 0; loop < length; loop++) {
-            String permutations = new String();
-            permutations += input.charAt(loop);
-            if (input.length() != 1) {
-                String newInput = input.substring(0, loop) + input.substring(loop + 1, length);
-                permutations += getPermutations.permutations(newInput);
+            String letter = new String();
+            letter += input.charAt(loop);
+            permutation.add(letter);
+            String newInput = input.substring(0, loop) + input.substring(loop + 1, length);
+            ArrayList<String> subPermutations = getPermutations.permutations(newInput);
+            if (length == 1) {
+                for (int loop2 = 0; loop2 < permutation.size(); loop2++) {
+                    permutation.add((loop + loop2), (permutation.get(loop) + subPermutations.get(loop2)));
+                }
             }
-            return permutations;
         }
-        return null;
+        return permutation;
     }
-
 }
