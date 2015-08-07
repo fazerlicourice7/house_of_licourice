@@ -1,6 +1,7 @@
 package anagramMaker;
 
 import java.io.*;
+import java.util.ArrayList;
 
 /**
  * @author 18balanagav
@@ -8,6 +9,8 @@ import java.io.*;
 public class anagram_finder {
 
     static BufferedReader READ = new BufferedReader(new InputStreamReader(System.in));
+    static ArrayList permutations = new ArrayList();
+
     FileReader readFile;
     BufferedReader READFILE = new BufferedReader(readFile);
 
@@ -17,8 +20,11 @@ public class anagram_finder {
 
     public static void main(String args[]) throws IOException {
         System.out.println("Enter a word");
-        String input = READ.readLine(); 
+        String input = READ.readLine();
         System.out.println();
-        permutations.permutations("",input);
+        permutations.add(getPermutations.permutations(input));
+        for (int loop = 0; loop < permutations.size(); loop++) {
+            System.out.println(permutations.get(loop));
+        }
     }
 }
