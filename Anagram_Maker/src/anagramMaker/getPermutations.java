@@ -12,20 +12,30 @@ import java.util.ArrayList;
  */
 public class getPermutations {
 
-    static ArrayList<String> permutation = new ArrayList<>();
-
     public static ArrayList permutations(String input) {
+        ArrayList<String> permutation = new ArrayList<>();
         int length = input.length();
         for (int loop = 0; loop < length; loop++) {
-            String letter = new String();
-            letter += input.charAt(loop);
-            permutation.add(letter);
-            String newInput = input.substring(0, loop) + input.substring(loop + 1, length);
-            ArrayList<String> subPermutations = getPermutations.permutations(newInput);
+            ArrayList<String> subPermutations = new ArrayList<>();
             if (length == 1) {
-                for (int loop2 = 0; loop2 < permutation.size(); loop2++) {
-                    permutation.add((loop + loop2), (permutation.get(loop) + subPermutations.get(loop2)));
+                subPermutations.add(input);
+            } else if (length != 1) {
+                String letter = new String();
+                letter += input.charAt(loop);
+                permutation.add(letter);
+                String newWord = input.substring(0, loop) + input.substring(loop + 1, length);
+                subPermutations = getPermutations.permutations(newWord);
+            }
+            int loop2;
+            for (loop2 = 0; loop2 < subPermutations.size(); loop2++) {
+                String outer = new String();
+                if (permutation.size() > 0) {
+                    outer = permutation.get(loop);
                 }
+                permutation.add((loop + loop2), (outer + subPermutations.get(loop2)));
+                /*if (permutation.size() > 1) {
+                    permutation.remove(loop + loop2 + 1);
+                }*/
             }
         }
         return permutation;
