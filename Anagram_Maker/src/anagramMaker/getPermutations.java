@@ -27,15 +27,27 @@ public class getPermutations {
                 subPermutations = getPermutations.permutations(newWord);
             }
             int loop2;
-            for (loop2 = 0; loop2 < subPermutations.size(); loop2++) {
-                String outer = new String();
-                if (permutation.size() > 0) {
+            String outer = new String();
+            if (!permutation.isEmpty()) {
+                if (permutation.size() == 1) {
                     outer = permutation.get(loop);
+                } else {
+                    /*for (int loop3 = 0; loop3 < permutation.size(); loop3++) {
+                     String current = permutation.get(loop3);
+                     if (current.length() == 1) {
+                     outer = current;
+                     break;
+                     }
+                     }*/
+                    outer = permutation.get(loop + 1);
                 }
+            }
+            for (loop2 = 0; loop2 < subPermutations.size(); loop2++) {
+
                 permutation.add((loop + loop2), (outer + subPermutations.get(loop2)));
-                /*if (permutation.size() > 1) {
-                    permutation.remove(loop + loop2 + 1);
-                }*/
+            }
+            if (permutation.size() > (loop + loop2)) {
+                permutation.remove(loop + loop2);
             }
         }
         return permutation;
