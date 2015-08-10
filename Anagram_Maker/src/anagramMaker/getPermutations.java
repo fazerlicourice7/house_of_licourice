@@ -1,6 +1,7 @@
 package anagramMaker;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * @author fazer
@@ -8,42 +9,57 @@ import java.util.ArrayList;
 public class getPermutations {
 
     public static ArrayList permutations(String input) {
+        //creates arraylist that will hold all the permutations
         ArrayList<String> permutation = new ArrayList<>();
+        //contains the length of the input string
         int length = input.length();
+        //re iterates for the length of the input and acts on each letter individually
         for (int loop = 0; loop < length; loop++) {
+            //arraylist that contatins all the sub permutations of the word
             ArrayList<String> subPermutations = new ArrayList<>();
+            //END CASE OF RECURSION!!
+            //if the length of the input is one then add it to subPermutations
             if (length == 1) {
                 subPermutations.add(input);
-            } else if (length != 1) {
+            } //if length > 1 then find the letter of this iteration and work with it 
+            else if (length != 1) {
                 String letter = new String();
+                //gets the letter at the current iteration
                 letter += input.charAt(loop);
                 permutation.add(letter);
                 String newWord = input.substring(0, loop) + input.substring(loop + 1, length);
+                //spawns a new instance of this class with the initial string - the current letter(String letter)
                 subPermutations = getPermutations.permutations(newWord);
             }
+            //After the endcase:
             int loop2;
             String outer = new String();
+            //does this only if permutations isn't empty
             if (!permutation.isEmpty()) {
+                //if the size is one then stores that value in outer
                 if (permutation.size() == 1) {
                     outer = permutation.get(loop);
-                } else {
+                }//else it finds whichever value has a length of one and stores that in outer 
+                else {
                     for (int loop3 = 0; loop3 < permutation.size(); loop3++) {
                         String current = permutation.get(loop3);
                         if (current.length() == 1) {
                             outer = current;
-                            //break;
+                            //after storing it, removes it from the arraylist to minimize complications
+                            permutation.remove(loop3);
                         }
                     }
-                    //outer = permutation.get(loop + 1);
                 }
             }
+            //adds all subpermutations to the correct letter to create all the permutations of input
             for (loop2 = 0; loop2 < subPermutations.size(); loop2++) {
-                permutation.add((loop + loop2), (outer + subPermutations.get(loop2)));
-            }
-            if (permutation.size() > (loop + loop2)) {
-                permutation.remove(permutation.size() - 1);
+                permutation.add(outer + subPermutations.get(loop2));
             }
         }
+        //sort the arraylist in alphabetical order
+        Collections.sort(permutation);
+        //returns the final arraylist with all the permutations of the input
         return permutation;
     }
+    
 }

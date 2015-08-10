@@ -14,7 +14,7 @@ public class anagram_finder {
     //BufferedReader READFILE = new BufferedReader(readFile);
 
     static ArrayList permutations;
-
+    static ArrayList WORDS;
     /*FileReader readFile;
     BufferedReader READFILE = new BufferedReader(readFile);
 */
@@ -28,6 +28,7 @@ public class anagram_finder {
         String input = READ.readLine();
         System.out.println();
         permutations = getPermutations.permutations(input);
+        WORDS = checksDictionary.findsWords(permutations);
         for (int loop = 0; loop < permutations.size(); loop++) {
             System.out.println(permutations.get(loop));
         }
