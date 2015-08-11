@@ -11,7 +11,7 @@ public class checksDictionary {
     public static ArrayList findWords(ArrayList permutations) throws FileNotFoundException, IOException {
         //creates a reader which reads words fom a dictionary file
         File dictionary;
-        dictionary = new File("/fazer/home/git/house_of_licourice/Anagram_Maker/src/anagramMaker/lowercase100k");
+        dictionary = new File("lowercase100k.txt");
         FileReader fileread = new FileReader(dictionary);
         BufferedReader READFILE = new BufferedReader(fileread);
         //creates an array list in which we will store all our words
