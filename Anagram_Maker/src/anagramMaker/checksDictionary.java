@@ -46,7 +46,10 @@ public class checksDictionary {
                 }
                 //if they are all words in the dictionary then add them
                 if (yes == Words.length) {
-                    words.add((String) permutations.get(loop));
+                    //gets rid of repeats 
+                    if (!words.contains((String) permutations.get(loop))) {
+                        words.add((String) permutations.get(loop));
+                    }
                 }
             }
         } else {
@@ -56,7 +59,10 @@ public class checksDictionary {
             while (currentWord != null) {
                 //adds the current word to our arraylist of words if it is one of our permutations
                 if (permutations.contains(currentWord)) {
-                    words.add(currentWord);
+                    //gets rid of repeats
+                    if (!words.contains(currentWord)) {
+                        words.add(currentWord);
+                    }
                 }
                 //reads a new word every iteration
                 currentWord = READFILE.readLine();
