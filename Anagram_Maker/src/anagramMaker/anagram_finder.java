@@ -9,28 +9,28 @@ import java.util.ArrayList;
 public class anagram_finder {
 
     static BufferedReader READ = new BufferedReader(new InputStreamReader(System.in));
-
-    //FileReader readFile;
-    //BufferedReader READFILE = new BufferedReader(readFile);
-
     static ArrayList permutations;
     static ArrayList WORDS;
-    /*FileReader readFile;
-    BufferedReader READFILE = new BufferedReader(readFile);
-*/
-
-    /*public anagram_finder() throws FileNotFoundException {
-        this.readFile = new FileReader("lowercase100k.txt");
-    }*/
-
-    public static void main(String args[]) throws IOException{
+    
+    public static void main(String args[]) throws IOException {
         System.out.println("Enter a word");
         String input = READ.readLine();
         System.out.println();
         permutations = getPermutations.permutations(input);
-        WORDS = checksDictionary.findsWords(permutations);
-        for (int loop = 0; loop < permutations.size(); loop++) {
-            System.out.println(permutations.get(loop));
+        
+        WORDS = checksDictionary.findWords(permutations);
+        if (WORDS.size() < 1) {
+            System.out.println("There are no anagrams of the string you entered, would you like all the permutations instead?" +"\n" +"'y' or 'n'");
+            String input2 = READ.readLine();
+            if(input2.equalsIgnoreCase("y")||input2.equalsIgnoreCase("yes")){
+                for(int loop = 0; loop <permutations.size(); loop++){
+                    System.out.println(permutations.get(loop));
+                }
+            }
+        } else {
+            for (int loop = 0; loop < WORDS.size(); loop++) {
+                System.out.println(WORDS.get(loop));
+            }
         }
     }
 }
