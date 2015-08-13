@@ -2,7 +2,10 @@ House Of Licourice
 
 This is a repository where I will be uploading all my work. You can make pull requests to make changes in my code if you would like to improve it in any way. Documentation would be appreciated for all of my code regardless of whether they already have some documentation or not.
 
-This repository has four directories:
+This repository has five directories:
+
+house_of_licourice/AnagramMaker:
+    This repository consists of a project in which it takes an input and finds all the anagrams of this word. Further variations of this program will be worked on, in which we have sub-Anagrams, etc.
 
 house_of_licourice/Battleship:
     This repository consists of a project in which I'm trying to virtually re-create the boardgame Battleship. 
