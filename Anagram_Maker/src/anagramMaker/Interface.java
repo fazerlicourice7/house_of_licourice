@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package anagramMaker;
 
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 /**
@@ -18,6 +14,7 @@ public class Interface extends javax.swing.JPanel {
     public Interface() {
         initComponents();
     }
+    static String input;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,7 +50,7 @@ public class Interface extends javax.swing.JPanel {
                             .addComponent(inputPane)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
+                        .addGap(68, 68, 68)
                         .addComponent(Generate)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -62,22 +59,25 @@ public class Interface extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(inputPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Generate)
-                .addGap(16, 16, 16)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
     public static String getInput() {
-        String input;
-        while (!Generate.getModel().isSelected()) {
-        }
-        input = inputPane.getText();
+        Generate.addActionListener(ActionEvent event);
         return input;
     }
     
+    public String ACtionListener
+
+    public static String giveInput() {
+        String input = inputPane.getText();
+        return input;
+    }
+
     public static void setOutput(ArrayList WORDS, ArrayList permutations) {
         if (WORDS.size() < 1) {
             outputText.setText("There are no anagrams of your input. Here are the permutations instead.");
