@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- * @author 18balanagav
+ * @author fazer
  */
 public class anagram_finder {
 
@@ -14,9 +14,10 @@ public class anagram_finder {
 
     public static void main(String args[]) throws IOException {
         String input;
-        input = Interface.getInput();
+        Interface3.stuff();
+        input = Interface3.getInput();
         permutations = getPermutations.permutations(input);
         WORDS = checksDictionary.findWords(permutations);
-        Interface.setOutput(WORDS, permutations);
+        Interface3.setOutput(WORDS, permutations);
     }
 }
