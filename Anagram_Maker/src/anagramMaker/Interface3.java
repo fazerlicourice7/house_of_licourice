@@ -7,7 +7,10 @@ package anagramMaker;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -108,30 +111,34 @@ public class Interface3 extends javax.swing.JFrame {
         getPermutations getPermutations2 = new getPermutations();
         checksDictionary checkDictionary = new checksDictionary();
         input = inputText.getText();
-        ArrayList<String> Permutations = new ArrayList();
-        Permutations = getPermutations2.permutations(input);
-        ArrayList<String> Words = new ArrayList();
-        Words = checkDictionary.findWords(Permutations);
+        ArrayList<String> permutations = new ArrayList();
+        //if (subPermutationTButton.isEnabled()) {
+          //  permutations = getPermutations2.subPermutations(input);
+        //} else if (permutationTButton.isEnabled()) {
+            permutations = getPermutations2.permutations(input);
+        //}
+        //if (anagramTButton.isEnabled()) {
+            try {
+                permutations = checkDictionary.findWords(permutations);
+            } catch (IOException ex) {
+                Logger.getLogger(Interface3.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        //}
+        setOutput(permutations);
     }//GEN-LAST:event_GenerateActionPerformed
 
-
-    public void setOutput(ArrayList WORDS, ArrayList permutations) {
-        if (WORDS.size() < 1) {
-            outputArea.setText("There are no anagrams of your input. Here are the permutations instead.");
-            for (int loop = 0; loop < permutations.size(); loop++) {
-                outputArea.append((String) permutations.get(loop));
-            }
-        } else {
-            for (int loop = 0; loop < WORDS.size(); loop++) {
-                outputArea.append((String) WORDS.get(loop));
-            }
+    public void setOutput(ArrayList WORDS) {
+        outputArea.setText(null);
+        for (int loop = 0; loop < WORDS.size(); loop++) {
+            outputArea.append((String) WORDS.get(loop));
+            outputArea.append("\n");
         }
     }
 
     public void initialize() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                 new Interface3().setVisible(true);
+                new Interface3().setVisible(true);
             }
         });
     }

@@ -27,7 +27,10 @@ public class getPermutations {
                 String letter = new String();
                 //gets the letter at the current iteration
                 letter += input.charAt(loop);
-                permutation.add(letter);
+                //add it if its not already in
+                if (!permutation.contains(letter)) {
+                    permutation.add(letter);
+                }
                 String newWord = input.substring(0, loop) + input.substring(loop + 1, length);
                 //spawns a new instance of this class with the initial string - the current letter(String letter)
                 subPermutations = getPermutations2.permutations(newWord);
@@ -54,7 +57,10 @@ public class getPermutations {
             }
             //adds all subpermutations to the correct letter to create all the permutations of input
             for (loop2 = 0; loop2 < subPermutations.size(); loop2++) {
-                permutation.add(outer + subPermutations.get(loop2));
+                //add it if its not already in
+                if (!permutation.contains(outer + subPermutations.get(loop2))) {
+                    permutation.add(outer + subPermutations.get(loop2));
+                }
             }
         }
         //sort the arraylist in alphabetical order
@@ -63,4 +69,9 @@ public class getPermutations {
         return permutation;
     }
     
+    public ArrayList subPermutations(String input){
+        ArrayList<String> subpermutations = new ArrayList();
+        return subpermutations;
+    }
+
 }

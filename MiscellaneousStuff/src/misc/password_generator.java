@@ -11,7 +11,7 @@ public class password_generator extends javax.swing.JFrame {
    
     BufferedReader hi = new BufferedReader (new InputStreamReader (System.in));
     char one, two, three, four, five, six, seven, eight, nine, ten;
-    char array[] = {one, two, three, four, five, six, seven, eight};
+    char array[] = {one, two, three, four, five, six, seven, eight, nine, ten};
     String password = new String(array);
     public password_generator() {
         initComponents();
