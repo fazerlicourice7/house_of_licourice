@@ -72,41 +72,29 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Enter Word(s)"/>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JToggleButton" name="permutationTButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Permutations"/>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JToggleButton" name="anagramTButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="sub-Permutations"/>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JToggleButton" name="subPermutationTButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Anagrams"/>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="Generate">
       <Properties>
         <Property name="text" type="java.lang.String" value="Generate"/>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
-      </AuxValues>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GenerateActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -120,9 +108,6 @@
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
           </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
-          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

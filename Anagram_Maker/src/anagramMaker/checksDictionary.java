@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class checksDictionary {
 
-    public static ArrayList findWords(ArrayList permutations) throws FileNotFoundException, IOException {
+    public ArrayList findWords(ArrayList permutations) throws FileNotFoundException, IOException {
         //creates a reader which reads words fom a dictionary file
         File dictionary;
         dictionary = new File("lowercase100k.txt");

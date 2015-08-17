@@ -52,6 +52,11 @@ public class Interface3 extends javax.swing.JFrame {
         subPermutationTButton.setText("Anagrams");
 
         Generate.setText("Generate");
+        Generate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GenerateActionPerformed(evt);
+            }
+        });
 
         outputArea.setColumns(20);
         outputArea.setRows(5);
@@ -99,17 +104,18 @@ public class Interface3 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public static String getInput() {
-        Generate.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                input = inputText.getText();
-            }
-        });
-        return input;
-    }
+    private void GenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerateActionPerformed
+        getPermutations getPermutations2 = new getPermutations();
+        checksDictionary checkDictionary = new checksDictionary();
+        input = inputText.getText();
+        ArrayList<String> Permutations = new ArrayList();
+        Permutations = getPermutations2.permutations(input);
+        ArrayList<String> Words = new ArrayList();
+        Words = checkDictionary.findWords(Permutations);
+    }//GEN-LAST:event_GenerateActionPerformed
 
-    public static void setOutput(ArrayList WORDS, ArrayList permutations) {
+
+    public void setOutput(ArrayList WORDS, ArrayList permutations) {
         if (WORDS.size() < 1) {
             outputArea.setText("There are no anagrams of your input. Here are the permutations instead.");
             for (int loop = 0; loop < permutations.size(); loop++) {
@@ -122,21 +128,21 @@ public class Interface3 extends javax.swing.JFrame {
         }
     }
 
-    public static void stuff() {
+    public void initialize() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Interface3().setVisible(true);
+                 new Interface3().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private static javax.swing.JButton Generate;
-    private static javax.swing.JToggleButton anagramTButton;
-    private static javax.swing.JTextField inputText;
+    private javax.swing.JButton Generate;
+    private javax.swing.JToggleButton anagramTButton;
+    private javax.swing.JTextField inputText;
     private javax.swing.JScrollPane jScrollPane1;
-    private static javax.swing.JTextArea outputArea;
-    private static javax.swing.JToggleButton permutationTButton;
-    private static javax.swing.JToggleButton subPermutationTButton;
+    private javax.swing.JTextArea outputArea;
+    private javax.swing.JToggleButton permutationTButton;
+    private javax.swing.JToggleButton subPermutationTButton;
     // End of variables declaration//GEN-END:variables
 }

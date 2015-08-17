@@ -8,7 +8,8 @@ import java.util.Collections;
  */
 public class getPermutations {
 
-    public static ArrayList permutations(String input) {
+    public ArrayList permutations(String input) {
+        getPermutations getPermutations2 = new getPermutations();
         //creates arraylist that will hold all the permutations
         ArrayList<String> permutation = new ArrayList<>();
         //contains the length of the input string
@@ -29,7 +30,7 @@ public class getPermutations {
                 permutation.add(letter);
                 String newWord = input.substring(0, loop) + input.substring(loop + 1, length);
                 //spawns a new instance of this class with the initial string - the current letter(String letter)
-                subPermutations = getPermutations.permutations(newWord);
+                subPermutations = getPermutations2.permutations(newWord);
             }
             //After the endcase:
             int loop2;

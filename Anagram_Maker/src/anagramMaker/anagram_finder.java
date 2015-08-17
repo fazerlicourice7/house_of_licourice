@@ -14,10 +14,9 @@ public class anagram_finder {
 
     public static void main(String args[]) throws IOException {
         String input;
-        Interface3.stuff();
-        input = Interface3.getInput();
-        permutations = getPermutations.permutations(input);
-        WORDS = checksDictionary.findWords(permutations);
-        Interface3.setOutput(WORDS, permutations);
+        Interface3 gui = new Interface3();
+        getPermutations getPermutations1 = new getPermutations();
+        checksDictionary checkDictionary = new checksDictionary();
+        gui.initialize();
     }
 }
