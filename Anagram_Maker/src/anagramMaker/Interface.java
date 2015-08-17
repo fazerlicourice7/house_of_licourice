@@ -6,7 +6,13 @@ import java.util.ArrayList;
 /**
  * @author fazer
  */
-public class Interface extends javax.swing.JPanel {
+public class Interface extends javax.swing.JFrame {
+
+    static String input;
+
+    static void main() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     /**
      * Creates new form Interface
@@ -25,23 +31,69 @@ public class Interface extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        daFrame = new javax.swing.JInternalFrame();
         inputPane = new javax.swing.JTextField();
+        subPermutationButton = new javax.swing.JToggleButton();
+        anagramButton = new javax.swing.JToggleButton();
+        permutationButton = new javax.swing.JToggleButton();
+        Generate = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         outputText = new javax.swing.JTextArea();
-        Generate = new javax.swing.JToggleButton();
 
-        inputPane.setText("Enter word(s) to find anagram of");
+        daFrame.setVisible(true);
+
+        inputPane.setText("Enter word(s)");
+
+        subPermutationButton.setText("sub-Permutations");
+
+        anagramButton.setText("Anagrams");
+
+        permutationButton.setText("Permutations");
+
+        Generate.setText("Generate");
 
         outputText.setColumns(20);
         outputText.setRows(5);
         jScrollPane2.setViewportView(outputText);
 
-        Generate.setText("Generate");
+        javax.swing.GroupLayout daFrameLayout = new javax.swing.GroupLayout(daFrame.getContentPane());
+        daFrame.getContentPane().setLayout(daFrameLayout);
+        daFrameLayout.setHorizontalGroup(
+            daFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(daFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(daFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(inputPane)
+                    .addComponent(subPermutationButton, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                    .addComponent(anagramButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(permutationButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Generate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        daFrameLayout.setVerticalGroup(
+            daFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(daFrameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(inputPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(subPermutationButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(anagramButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(permutationButton)
+                .addGap(18, 18, 18)
+                .addComponent(Generate)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -64,9 +116,20 @@ public class Interface extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                 .addContainerGap())
+=======
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(daFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(daFrame, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+>>>>>>> c59dce973e9614ce1af6b2715dab154c0d841e88
         );
     }// </editor-fold>//GEN-END:initComponents
     public static String getInput() {
+<<<<<<< HEAD
         Generate.addActionListener(ActionEvent event);
         return input;
     }
@@ -77,6 +140,13 @@ public class Interface extends javax.swing.JPanel {
         String input = inputPane.getText();
         return input;
     }
+=======
+        Generate.addActionListener((ActionEvent e) -> {
+            input = inputPane.getText();
+        });
+        return input;
+    }
+>>>>>>> c59dce973e9614ce1af6b2715dab154c0d841e88
 
     public static void setOutput(ArrayList WORDS, ArrayList permutations) {
         if (WORDS.size() < 1) {
@@ -91,10 +161,16 @@ public class Interface extends javax.swing.JPanel {
         }
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private static javax.swing.JToggleButton Generate;
-    private static javax.swing.JTextField inputPane;
+    public static javax.swing.JButton Generate;
+    public static javax.swing.JToggleButton anagramButton;
+    public static javax.swing.JInternalFrame daFrame;
+    public static javax.swing.JTextField inputPane;
     private static javax.swing.JScrollPane jScrollPane2;
-    private static javax.swing.JTextArea outputText;
+    public static javax.swing.JTextArea outputText;
+    public static javax.swing.JToggleButton permutationButton;
+    public static javax.swing.JToggleButton subPermutationButton;
     // End of variables declaration//GEN-END:variables
+
 }
