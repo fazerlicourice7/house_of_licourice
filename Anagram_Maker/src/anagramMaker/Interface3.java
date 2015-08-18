@@ -5,8 +5,6 @@
  */
 package anagramMaker;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -18,6 +16,8 @@ import java.util.logging.Logger;
  */
 public class Interface3 extends javax.swing.JFrame {
 
+    boolean words = false, perms = false, subPerms = false;
+    ArrayList<String> permutations = new ArrayList();
     static String input;
 
     /**
@@ -49,10 +49,25 @@ public class Interface3 extends javax.swing.JFrame {
         inputText.setText("Enter Word(s)");
 
         permutationTButton.setText("Permutations");
+        permutationTButton.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                permutationTButtonStateChanged(evt);
+            }
+        });
 
         anagramTButton.setText("sub-Permutations");
+        anagramTButton.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                anagramTButtonStateChanged(evt);
+            }
+        });
 
         subPermutationTButton.setText("Anagrams");
+        subPermutationTButton.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                subPermutationTButtonStateChanged(evt);
+            }
+        });
 
         Generate.setText("Generate");
         Generate.addActionListener(new java.awt.event.ActionListener() {
@@ -111,21 +126,46 @@ public class Interface3 extends javax.swing.JFrame {
         getPermutations getPermutations2 = new getPermutations();
         checksDictionary checkDictionary = new checksDictionary();
         input = inputText.getText();
-        ArrayList<String> permutations = new ArrayList();
-        //if (subPermutationTButton.isEnabled()) {
-          //  permutations = getPermutations2.subPermutations(input);
-        //} else if (permutationTButton.isEnabled()) {
-            permutations = getPermutations2.permutations(input);
-        //}
-        //if (anagramTButton.isEnabled()) {
+        if (subPerms && words) {
+            permutations = getPermutations2.subPermutations(input);
             try {
                 permutations = checkDictionary.findWords(permutations);
             } catch (IOException ex) {
                 Logger.getLogger(Interface3.class.getName()).log(Level.SEVERE, null, ex);
             }
-        //}
+        } else if (perms && words) {
+            permutations = getPermutations2.permutations(input);
+            try {
+                permutations = checkDictionary.findWords(permutations);
+            } catch (IOException ex) {
+                Logger.getLogger(Interface3.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (subPerms) {
+            permutations = getPermutations2.subPermutations(input);
+        } else if (perms) {
+            permutations = getPermutations2.permutations(input);
+        } else if (!(perms && subPerms && words)) {
+            permutations = getPermutations2.permutations(input);
+            try {
+                permutations = checkDictionary.findWords(permutations);
+            } catch (IOException ex) {
+                Logger.getLogger(Interface3.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         setOutput(permutations);
     }//GEN-LAST:event_GenerateActionPerformed
+
+    private void permutationTButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_permutationTButtonStateChanged
+        perms = permutationTButton.isEnabled();
+    }//GEN-LAST:event_permutationTButtonStateChanged
+
+    private void anagramTButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_anagramTButtonStateChanged
+        words = anagramTButton.isEnabled();
+    }//GEN-LAST:event_anagramTButtonStateChanged
+
+    private void subPermutationTButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_subPermutationTButtonStateChanged
+        subPerms = subPermutationTButton.isEnabled();
+    }//GEN-LAST:event_subPermutationTButtonStateChanged
 
     public void setOutput(ArrayList WORDS) {
         outputArea.setText(null);

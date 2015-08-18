@@ -67,7 +67,6 @@ public class checksDictionary {
                 //reads a new word every iteration
                 currentWord = READFILE.readLine();
             }
-
         }
         return words;
     }

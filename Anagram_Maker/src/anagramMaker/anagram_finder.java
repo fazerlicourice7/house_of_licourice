@@ -13,10 +13,7 @@ public class anagram_finder {
     static ArrayList WORDS;
 
     public static void main(String args[]) throws IOException {
-        String input;
         Interface3 gui = new Interface3();
-        getPermutations getPermutations1 = new getPermutations();
-        checksDictionary checkDictionary = new checksDictionary();
         gui.initialize();
     }
 }

@@ -77,16 +77,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Permutations"/>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="permutationTButtonStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="anagramTButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="sub-Permutations"/>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="anagramTButtonStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="subPermutationTButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Anagrams"/>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="subPermutationTButtonStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Generate">
       <Properties>
