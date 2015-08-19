@@ -11,9 +11,10 @@ import java.util.ArrayList;
  */
 public class ArrayListArrayList {
 
-    public ArrayList getAllPermutations(ArrayList ofArrayList) {
+    public ArrayList getAllContents(ArrayList ofArrayList) {
         ArrayList allPermutations = new ArrayList();
         for (int loop = 0; loop < ofArrayList.size(); loop++) {
+            //System.out.println(loop);
             ArrayList perms = new ArrayList();
             perms = (ArrayList) ofArrayList.get(loop);
             for (int loop2 = 0; loop2 < perms.size(); loop2++) {
