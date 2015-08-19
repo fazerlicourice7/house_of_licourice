@@ -38,8 +38,8 @@ public class Interface3 extends javax.swing.JFrame {
 
         inputText = new javax.swing.JTextField();
         permutationTButton = new javax.swing.JToggleButton();
-        anagramTButton = new javax.swing.JToggleButton();
         subPermutationTButton = new javax.swing.JToggleButton();
+        anagramTButton = new javax.swing.JToggleButton();
         Generate = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         outputArea = new javax.swing.JTextArea();
@@ -55,17 +55,17 @@ public class Interface3 extends javax.swing.JFrame {
             }
         });
 
-        anagramTButton.setText("sub-Permutations");
-        anagramTButton.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                anagramTButtonStateChanged(evt);
-            }
-        });
-
-        subPermutationTButton.setText("Anagrams");
+        subPermutationTButton.setText("sub-Permutations");
         subPermutationTButton.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 subPermutationTButtonStateChanged(evt);
+            }
+        });
+
+        anagramTButton.setText("Anagrams");
+        anagramTButton.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                anagramTButtonStateChanged(evt);
             }
         });
 
@@ -85,20 +85,16 @@ public class Interface3 extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Generate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(anagramTButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(subPermutationTButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(inputText, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(permutationTButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Generate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(subPermutationTButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(anagramTButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(inputText, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(permutationTButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 12, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -109,9 +105,9 @@ public class Interface3 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(permutationTButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(anagramTButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(subPermutationTButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(anagramTButton)
                 .addGap(18, 18, 18)
                 .addComponent(Generate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -125,26 +121,65 @@ public class Interface3 extends javax.swing.JFrame {
     private void GenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerateActionPerformed
         getPermutations getPermutations2 = new getPermutations();
         checksDictionary checkDictionary = new checksDictionary();
+        ArrayListArrayList stringFromArrayList = new ArrayListArrayList();
         input = inputText.getText();
+        //in the case of subPermutations and words (sub Anagrams and Anagrams)
         if (subPerms && words) {
-            permutations = getPermutations2.subPermutations(input);
+            ArrayList totalSPerms = new ArrayList();
+            for (int loop = 0; loop < input.length() - 1; loop++) {
+                input += " ";
+                totalSPerms.add(getPermutations2.permutations(input));
+            }
+            permutations = stringFromArrayList.getAllPermutations(totalSPerms);
             try {
                 permutations = checkDictionary.findWords(permutations);
             } catch (IOException ex) {
                 Logger.getLogger(Interface3.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if (perms && words) {
+        }//permutations and sub permutations
+        else if (perms && subPerms) {
+            ArrayList totalSPerms = new ArrayList();
+            for (int loop = 0; loop < input.length() - 1; loop++) {
+                input += " ";
+                totalSPerms.add(getPermutations2.permutations(input));
+            }
+            permutations = stringFromArrayList.getAllPermutations(totalSPerms);
+        }//alltrue
+        else if (subPerms && words && perms) {
+            ArrayList totalSPerms = new ArrayList();
+            for (int loop = 0; loop < input.length() - 1; loop++) {
+                input += " ";
+                totalSPerms.add(getPermutations2.permutations(input));
+            }
+            permutations = stringFromArrayList.getAllPermutations(totalSPerms);
+            try {
+                permutations = checkDictionary.findWords(permutations);
+            } catch (IOException ex) {
+                Logger.getLogger(Interface3.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }//in the case of Permutations and words (Anagrams)
+        else if (perms && words) {
             permutations = getPermutations2.permutations(input);
             try {
                 permutations = checkDictionary.findWords(permutations);
             } catch (IOException ex) {
                 Logger.getLogger(Interface3.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if (subPerms) {
-            permutations = getPermutations2.subPermutations(input);
-        } else if (perms) {
+        }//in the case of subPermutations
+        else if (subPerms) {
+            //add loops and stuff to keep adding spaces to input to get split perms
+            ArrayList totalSPerms = new ArrayList();
+            for (int loop = 0; loop < input.length() - 1; loop++) {
+                input += " ";
+                totalSPerms.add(getPermutations2.permutations(input));
+            }
+            System.out.println("Subperms");
+            permutations = stringFromArrayList.getAllPermutations(totalSPerms);
+        }//in the case of Permutations  
+        else if (perms) {
             permutations = getPermutations2.permutations(input);
-        } else if (!(perms && subPerms && words)) {
+        }//default is Anagrams (aLL false)
+        else if (!(perms && subPerms && words)) {
             permutations = getPermutations2.permutations(input);
             try {
                 permutations = checkDictionary.findWords(permutations);
@@ -156,16 +191,19 @@ public class Interface3 extends javax.swing.JFrame {
     }//GEN-LAST:event_GenerateActionPerformed
 
     private void permutationTButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_permutationTButtonStateChanged
-        perms = permutationTButton.isEnabled();
+        perms = permutationTButton.isSelected();
+        System.out.println("perms " +perms);
     }//GEN-LAST:event_permutationTButtonStateChanged
 
-    private void anagramTButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_anagramTButtonStateChanged
-        words = anagramTButton.isEnabled();
-    }//GEN-LAST:event_anagramTButtonStateChanged
-
     private void subPermutationTButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_subPermutationTButtonStateChanged
-        subPerms = subPermutationTButton.isEnabled();
+        subPerms = subPermutationTButton.isSelected();
+        System.out.println("subperms " +subPerms);
     }//GEN-LAST:event_subPermutationTButtonStateChanged
+
+    private void anagramTButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_anagramTButtonStateChanged
+        words = anagramTButton.isSelected();
+        System.out.println("words " +words);
+    }//GEN-LAST:event_anagramTButtonStateChanged
 
     public void setOutput(ArrayList WORDS) {
         outputArea.setText(null);

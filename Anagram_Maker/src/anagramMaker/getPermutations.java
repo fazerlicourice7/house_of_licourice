@@ -69,20 +69,21 @@ public class getPermutations {
         return permutation;
     }
 
+    /**
     public ArrayList subPermutations(String input) {
         /*
          * Find all the possible subpermutations of a word along with its possible permutations.
          * eg. athdne -> and the, the and, etc..
          * andrew -> an drew, drew an etc.
-         */
+         *
         getPermutations getPermutations2 = new getPermutations();
         //creates arraylist that will hold all the permutations
-        ArrayList<String> spermutation = new ArrayList<>();
+        ArrayList<String> splitPermutations = new ArrayList<>();
         //contains the length of the input string
         int length = input.length();
         for (int loopo = 0; loopo < length; loopo++) {
             input = input + " ";
-            System.out.println(input +"*");
+            System.out.println(input + "*");
             //re iterates for the length of the input and acts on each letter individually
             for (int loop = 0; loop < length; loop++) {
                 //arraylist that contatins all the sub permutations of the word
@@ -97,8 +98,8 @@ public class getPermutations {
                     //gets the letter at the current iteration
                     letter += input.charAt(loop);
                     //add it if its not already in
-                    if (!spermutation.contains(letter)) {
-                        spermutation.add(letter);
+                    if (!splitPermutations.contains(letter)) {
+                        splitPermutations.add(letter);
                     }
                     String newWord = input.substring(0, loop) + input.substring(loop + 1, length);
                     //spawns a new instance of this class with the initial string - the current letter(String letter)
@@ -108,18 +109,18 @@ public class getPermutations {
                 int loop2;
                 String outer = new String();
                 //does this only if permutations isn't empty
-                if (!spermutation.isEmpty()) {
+                if (!splitPermutations.isEmpty()) {
                     //if the size is one then stores that value in outer
-                    if (spermutation.size() == 1) {
-                        outer = spermutation.get(loop);
+                    if (splitPermutations.size() == 1) {
+                        outer = splitPermutations.get(loop);
                     }//else it finds whichever value has a length of one and stores that in outer 
                     else {
-                        for (int loop3 = 0; loop3 < spermutation.size(); loop3++) {
-                            String current = spermutation.get(loop3);
+                        for (int loop3 = 0; loop3 < splitPermutations.size(); loop3++) {
+                            String current = splitPermutations.get(loop3);
                             if (current.length() == 1) {
                                 outer = current;
                                 //after storing it elsewhere, removes it from the arraylist to minimize complications
-                                spermutation.remove(loop3);
+                                splitPermutations.remove(loop3);
                             }
                         }
                     }
@@ -127,16 +128,17 @@ public class getPermutations {
                 //adds all subpermutations to the correct letter to create all the permutations of input
                 for (loop2 = 0; loop2 < subPermutations.size(); loop2++) {
                     //add it if its not already in
-                    if (!spermutation.contains(outer + subPermutations.get(loop2))) {
-                        spermutation.add(outer + subPermutations.get(loop2));
+                    if (!splitPermutations.contains(outer + subPermutations.get(loop2))) {
+                        splitPermutations.add(outer + subPermutations.get(loop2));
                     }
                 }
             }
         }
         //sort the arraylist in alphabetical order
-        Collections.sort(spermutation);
+        Collections.sort(splitPermutations);
         //returns the final arraylist with all the permutations of the input
-        return spermutation;
+        return splitPermutations;
     }
+    */
 
 }
