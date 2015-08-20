@@ -19,7 +19,7 @@ public class ArrayListArrayList {
             perms = (ArrayList) ofArrayList.get(loop);
             for (int loop2 = 0; loop2 < perms.size(); loop2++) {
                 allPermutations.add(perms.get(loop2));
-                System.out.println(perms.get(loop2));
+                //System.out.println(perms.get(loop2));
             }
         }
         return allPermutations;

@@ -47,8 +47,12 @@ public class checksDictionary {
                 //if they are all words in the dictionary then add them
                 if (yes == Words.length) {
                     //gets rid of repeats 
-                    if (!words.contains((String) permutations.get(loop))) {
-                        words.add((String) permutations.get(loop));
+                    String WORD = (String) permutations.get(loop);
+                    if (words.contains(WORD)) {
+                    } else {
+                        //if (WORD.charAt(0) != ' ' && WORD.charAt(WORD.length() - 1) != ' ') {
+                            words.add((String) permutations.get(loop));
+                        //}
                     }
                 }
             }

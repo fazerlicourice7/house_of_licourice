@@ -202,8 +202,11 @@ public class Interface3 extends javax.swing.JFrame {
     public void setOutput(ArrayList WORDS) {
         outputArea.setText(null);
         for (int loop = 0; loop < WORDS.size(); loop++) {
-            outputArea.append((String) WORDS.get(loop));
-            outputArea.append("\n");
+            String word = (String) WORDS.get(loop);
+            if (word.charAt(0) != ' ' && word.charAt(word.length() - 1) != ' ') {
+                outputArea.append((String) WORDS.get(loop));
+                outputArea.append("\n");
+            }
         }
     }
 
