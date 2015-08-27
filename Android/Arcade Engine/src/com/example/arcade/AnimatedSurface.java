@@ -94,7 +94,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable
                 drawCircle(canvas);
                 drawText(canvas);
 //                drawRandomRectangles(canvas); //often commented out because it is annoying!
-                drawImage(canvas);
+                //drawImage(canvas);
 
                 //Animating and drawing movable objects.
                 ball.animate(canvas);
@@ -147,11 +147,11 @@ public class AnimatedSurface extends SurfaceView implements Runnable
      *
      * @param c the Canvas being drawn on.
      */
-    public void drawImage(Canvas c)
+    /*public void drawImage(Canvas c)
     {
         Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.demo_image);
         c.drawBitmap(image, 200, 200, sharedPaint);
-    }
+    }*/
 
     public void drawRandomRectangles(Canvas c)
     {
