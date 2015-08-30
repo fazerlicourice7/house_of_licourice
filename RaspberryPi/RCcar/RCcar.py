@@ -1,4 +1,5 @@
-import RCcarFunctions, pygame, time
+import RCcarFunctions, pygame
+import time
 #import RCcarFunctions.py
 RCcarFunctions.init()
 global forward, reverse, left, right
