@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
+<resources>
+
+    <string name="app_name">MyFirstApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hel......! NO!!! I WILL NOT SAY HELLO!!!!</string>
+    <string name="getInput">Get Input</string>
+    <string name="title_activity_display_message">My message</string>
+</resources>
+=======
 <resources>
 
     <string name="app_name">MyFirstApp</string>
@@ -7,3 +17,4 @@
     <string name="printInput">Print Input</string>
 
 </resources>
+>>>>>>> b0073f5aacdc0d2aaa153331aa00c928072c9044
