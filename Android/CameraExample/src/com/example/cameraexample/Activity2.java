@@ -27,9 +27,6 @@ public class Activity2 extends Activity {
     
    
 
-}
-=======
-package com.example.cameraexample;
 
 import java.io.File;
 import android.net.Uri;
