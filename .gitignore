@@ -23,4 +23,4 @@ Thumbs.db
 *.swp
 *.o
 *.so
-.metadata
+/Android/.metadata
