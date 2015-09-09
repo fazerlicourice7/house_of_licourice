@@ -12,7 +12,7 @@
         android:onClick="picture"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:text="@string/picture"/>
+        android:text="@+string/picture"/>
 
     <Button
         android:layout_width="wrap_content"
