@@ -3,7 +3,7 @@
     package="com.example.balanagav.cameraexample" >
 
     <uses-feature
-        android:name="android.hardware.Camera"
+        android:name="android.hardware.camera2"
         android:required="true"/>
     <uses-permission
         android:name="android.permission.camera"/>
@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/act1" >
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
