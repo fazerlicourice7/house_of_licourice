@@ -1,18 +1,27 @@
 package com.example.balanagav.cameraexample;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.io.File;
 
 /**
  * Created by 18balanagav on 9/11/2015.
  */
 public class Activity2 extends Activity {
 
+    File picVid;
+    Uri whatnot;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end);
+        Intent media = getIntent();
+        whatnot = media.getData();
+        picVid = new File(whatnot.getPath());
     }
 
     @Override
@@ -35,5 +44,13 @@ public class Activity2 extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    protected void save(){
+
+    }
+
+    protected void delete(){
+        picVid.delete();
     }
 }
