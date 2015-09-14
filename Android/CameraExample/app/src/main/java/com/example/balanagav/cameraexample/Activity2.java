@@ -15,13 +15,13 @@ import java.io.File;
 public class Activity2 extends Activity {
 
     File picVid;
-    Uri whatnot;
+    Uri picVidURI;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end);
         Intent media = getIntent();
-        whatnot = media.getData();
-        picVid = new File(whatnot.getPath());
+        picVidURI = media.getData();
+        picVid = new File(picVidURI.getPath());
     }
 
     @Override
@@ -47,6 +47,11 @@ public class Activity2 extends Activity {
     }
 
     protected void save(){
+            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            File f = new File(String.valueOf(picVid));
+        Uri contentUri = Uri.fromFile(f);
+            mediaScanIntent.setData(contentUri);
+            this.sendBroadcast(mediaScanIntent);
 
     }
 

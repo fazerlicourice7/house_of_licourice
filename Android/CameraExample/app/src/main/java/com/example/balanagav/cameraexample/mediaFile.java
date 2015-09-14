@@ -22,8 +22,7 @@ public class mediaFile {
     /** Create a File for saving an image or video */
     private static File getOutputMediaFile(int type){
 
-        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES), "MyCameraApp");
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath(), "MyCameraApp");
 
         // Create the storage directory if it does not exist
         if (! mediaStorageDir.exists()){

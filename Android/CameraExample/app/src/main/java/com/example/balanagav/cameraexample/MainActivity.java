@@ -14,9 +14,8 @@ import static android.provider.MediaStore.EXTRA_OUTPUT;
 public class MainActivity extends Activity {
 
     private mediaFile mediafile = new mediaFile();
-    private Activity2 saveDelete = new Activity2();
 
-    private final int IMAGE_REQUEST_CODE = 100;
+    private final int IMAGE_REQUEST_CODE = 1888;
     private final int VIDEO_REQUEST_CODE = 200;
 
     private final int MEDIA_TYPE_IMAGE = 1;
