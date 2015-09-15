@@ -22,7 +22,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable
 {
     //Instance variables
     private PongBall ball = new PongBall(); //This is the green PongBall that moves around.
-    private PongBall touchTrackerBall;          //This is the blue PongBall that tracks touches.
+    private PongBall touchTrackerPaddle;          //This is the blue PongBall that tracks touches.
     private Random random = new Random();
 
     Paint sharedPaint = new Paint(Paint.ANTI_ALIAS_FLAG); //A shared paint object
@@ -90,19 +90,21 @@ public class AnimatedSurface extends SurfaceView implements Runnable
 
                 //Drawing stationary objects.
                 clearScreen(canvas);
-                drawBorder(canvas);
+                //drawBorder(canvas);
                 drawCircle(canvas);
                 drawText(canvas);
 //                drawRandomRectangles(canvas); //often commented out because it is annoying!
                 drawImage(canvas);
 
+                //location of paddle
+                int x2 = touchTrackerPaddle.getX();
+                int y2 = touchTrackerPaddle.getY();
                 //Animating and drawing movable objects.
-                ball.animate(canvas);
+                ball.animate(x2, y2, canvas);
                 ball.draw(canvas);
-                if(touchTrackerBall != null) //No track ball appears until first touch.
-                    touchTrackerBall.draw(canvas);
+                if(touchTrackerPaddle != null) //No track ball appears until first touch.
+                    touchTrackerPaddle.drawRect(canvas);
 
-                //===========================================================================
                 surfaceHolder.unlockCanvasAndPost(canvas);
             }
         }
@@ -111,7 +113,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable
     public void clearScreen(Canvas c)
     {
         //This fills the screen with whatever color (r,g,b) you choose.
-        c.drawRGB(155, 155, 0);
+        c.drawRGB(255, 0, 127);
     }
 
     public void drawBorder(Canvas c)
@@ -138,7 +140,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable
         pen.setTypeface(Typeface.SANS_SERIF);
         pen.setTextSize(40);
 
-        c.drawText("Hello", 200, 200, pen);
+        c.drawText("Get the Green ball into the circle!", 200, 200, pen);
     }
 
     /**
@@ -184,21 +186,21 @@ public class AnimatedSurface extends SurfaceView implements Runnable
     public boolean onTouchEvent(MotionEvent event)
     {
         //Construct the PongBall on the first touch of the screen.
-        if (touchTrackerBall ==null)
+        if (touchTrackerPaddle ==null)
         {
-            touchTrackerBall = new PongBall();
-            touchTrackerBall.setColor(Color.BLUE);
+            touchTrackerPaddle = new PongBall();
+            touchTrackerPaddle.setColor(Color.BLUE);
         }
 
         //Update the location of the touchTrackerBall
-        touchTrackerBall.setX((int) event.getX());
-        touchTrackerBall.setY((int) event.getY());
+        touchTrackerPaddle.setX((int) event.getX());
+        touchTrackerPaddle.setY((int) event.getY());
 
         //If the user touches in the circle, start a new Activity
-        if(inCircle((int)event.getX(), (int)event.getY()))
+        /*if(inCircle((int)event.getX(), (int)event.getY()))
         {
             startSecondActivity();
-        }
+        }*/
 
         return true;
     }

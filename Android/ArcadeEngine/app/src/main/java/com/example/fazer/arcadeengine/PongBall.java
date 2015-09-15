@@ -45,14 +45,18 @@ public class PongBall
     //Methods
     public void draw(Canvas c)
     {
-        c.drawCircle((float)x, (float)y, radius, paint);
+        c.drawCircle((float) x, (float) y, radius, paint);
+    }
+
+    public void drawRect(Canvas c){
+        c.drawRect((float) x - 10,(float) x + 10, (float) y - 10,(float) y + 10, paint);
     }
 
     /**
      * Updates the location of the PongBall based on time passed and velocity.
      * @param c the Canvas being drawn on.
      */
-    public void animate(Canvas c)
+    public void animate(int x2, int y2, Canvas c)
     {
         /*
         Because the Android system is a bit irregular in its time sharing,
@@ -68,11 +72,15 @@ public class PongBall
         //Bounce off walls
         if(x<radius) { x=radius; xVel=-xVel; }
         if(x>c.getWidth()-radius) { x=c.getWidth()-radius; xVel=-xVel; }
-
+        //bounce off paddle
+        if(x<)
         y+=dy;
         //Bounce off walls
         if(y<radius) { y=radius; yVel=-yVel; }
         if(y>c.getHeight()-radius) { y=c.getHeight()-radius; yVel=-yVel; }
+        //bounce off paddle
+
+
     }
 
 }

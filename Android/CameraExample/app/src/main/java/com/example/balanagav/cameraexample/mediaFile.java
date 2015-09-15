@@ -5,6 +5,8 @@ import android.os.Environment;
 import android.util.Log;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by 18balanagav on 9/11/2015.
@@ -30,7 +32,7 @@ public class mediaFile {
     /** Create a File for saving an image or video */
     private static File getOutputMediaFile(int type){
 
-        String externalStorage = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath();
+        String externalStorage = Environment.getExternalStorageDirectory().getAbsolutePath();
         Log.d("CameraExample", externalStorage);
         File mediaStorageDir = new File(externalStorage, "CameraExample");
         Log.d("Location Exists:", String.valueOf(mediaStorageDir.exists()));
@@ -43,13 +45,14 @@ public class mediaFile {
         }
 
         // Create a media file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         File mediaFile;
         if (type == MEDIA_TYPE_IMAGE){
             mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-                    "IMG_" + ".jpg");
+                    "IMG_" + timeStamp + ".jpg");
         } else if(type == MEDIA_TYPE_VIDEO) {
             mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-                    "VID_" + ".mp4");
+                    "VID_" + timeStamp + ".mp4");
         } else {
             return null;
         }
