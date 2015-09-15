@@ -11,23 +11,31 @@ import java.io.File;
  */
 public class mediaFile {
 
-    public static final int MEDIA_TYPE_IMAGE = 1;
-    public static final int MEDIA_TYPE_VIDEO = 2;
+    private static final int MEDIA_TYPE_IMAGE = 1;
+    private static final int MEDIA_TYPE_VIDEO = 2;
 
     /** Create a file Uri for saving an image or video */
     public static Uri getOutputMediaFileUri(int type){
-        return Uri.fromFile(getOutputMediaFile(type));
+        File mediafile = getOutputMediaFile(type);
+        Uri mediaUri;
+        if(mediafile==null){
+            Log.d("CameraExample","something didn't work");
+            return null;
+        }else{
+        mediaUri =  Uri.fromFile(mediafile);
+        }
+        return mediaUri;
     }
 
     /** Create a File for saving an image or video */
     private static File getOutputMediaFile(int type){
 
-        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath(), "MyCameraApp");
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath(), "CameraExample");
 
         // Create the storage directory if it does not exist
         if (! mediaStorageDir.exists()){
             if (! mediaStorageDir.mkdirs()){
-                Log.d("MyCameraApp", "failed to create directory");
+                Log.d("CameraExample", "failed to create directory");
                 return null;
             }
         }

@@ -49,7 +49,7 @@ public class Activity2 extends Activity {
     protected void save(){
             Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
             File f = new File(String.valueOf(picVid));
-        Uri contentUri = Uri.fromFile(f);
+            Uri contentUri = Uri.fromFile(f);
             mediaScanIntent.setData(contentUri);
             this.sendBroadcast(mediaScanIntent);
 

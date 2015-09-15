@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import static android.provider.MediaStore.ACTION_IMAGE_CAPTURE;
 import static android.provider.MediaStore.EXTRA_OUTPUT;
@@ -15,7 +17,7 @@ public class MainActivity extends Activity {
 
     private mediaFile mediafile = new mediaFile();
 
-    private final int IMAGE_REQUEST_CODE = 1888;
+    private final int IMAGE_REQUEST_CODE = 100;
     private final int VIDEO_REQUEST_CODE = 200;
 
     private final int MEDIA_TYPE_IMAGE = 1;
@@ -25,6 +27,20 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final Button picture = (Button) findViewById(R.id.takeAPicture);
+        picture.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                picture();
+            }
+        });
+
+        final Button video = (Button) findViewById(R.id.takeAVideo);
+        video.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                video();
+            }
+        });
     }
 
     @Override
