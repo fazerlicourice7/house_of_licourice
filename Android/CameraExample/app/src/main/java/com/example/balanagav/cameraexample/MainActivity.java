@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import java.io.File;
+
 import static android.provider.MediaStore.ACTION_IMAGE_CAPTURE;
 import static android.provider.MediaStore.EXTRA_OUTPUT;
 
@@ -22,6 +24,8 @@ public class MainActivity extends Activity {
 
     private final int MEDIA_TYPE_IMAGE = 1;
     private final int MEDIA_TYPE_VIDEO = 2;
+
+    Uri file;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,25 +71,19 @@ public class MainActivity extends Activity {
 
     protected void picture() {
         Intent takeAPicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        Uri file = mediafile.getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+        file = mediafile.getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
         takeAPicture.putExtra(MediaStore.EXTRA_OUTPUT, file);
         startActivityForResult(takeAPicture, IMAGE_REQUEST_CODE);
     }
 
     protected void video() {
         Intent takeAVideo = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-        Uri file = mediafile.getOutputMediaFileUri(MEDIA_TYPE_VIDEO);
+        file = mediafile.getOutputMediaFileUri(MEDIA_TYPE_VIDEO);
         takeAVideo.putExtra(MediaStore.EXTRA_OUTPUT, file);
         takeAVideo.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 10);
         takeAVideo.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
         startActivityForResult(takeAVideo, VIDEO_REQUEST_CODE);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Intent getStuff = new Intent(this, Activity2.class);
-        Uri file = data.getData();
-        getStuff.putExtra(EXTRA_OUTPUT,file);
-        startActivity(getStuff);
-    }
+
 }

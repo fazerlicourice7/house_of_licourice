@@ -25,10 +25,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".Activity2"
-            android:label="@string/act2"
-            />
     </application>
 
 </manifest>
