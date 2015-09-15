@@ -22,7 +22,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable
 {
     //Instance variables
     private PongBall ball = new PongBall(); //This is the green PongBall that moves around.
-    private PongBall touchTrackerPaddle;          //This is the blue PongBall that tracks touches.
+    private PongBall touchTrackerPaddle;          //This is the blue Paddle that tracks touches.
     private Random random = new Random();
 
     Paint sharedPaint = new Paint(Paint.ANTI_ALIAS_FLAG); //A shared paint object
@@ -97,14 +97,16 @@ public class AnimatedSurface extends SurfaceView implements Runnable
                 drawImage(canvas);
 
                 //location of paddle
-                int x2 = touchTrackerPaddle.getX();
-                int y2 = touchTrackerPaddle.getY();
+                int x2 = 0, y2 = 0;
+                if(touchTrackerPaddle != null) {
+                    x2 = touchTrackerPaddle.getX();
+                    y2 = touchTrackerPaddle.getY();
+                }
                 //Animating and drawing movable objects.
                 ball.animate(x2, y2, canvas);
                 ball.draw(canvas);
                 if(touchTrackerPaddle != null) //No track ball appears until first touch.
                     touchTrackerPaddle.drawRect(canvas);
-
                 surfaceHolder.unlockCanvasAndPost(canvas);
             }
         }
@@ -136,9 +138,9 @@ public class AnimatedSurface extends SurfaceView implements Runnable
         Paint pen = new Paint(Paint.LINEAR_TEXT_FLAG);
         pen.setStyle(Paint.Style.STROKE);
         pen.setStrokeWidth(2);
-        pen.setColor(Color.BLUE);
+        pen.setColor(Color.BLACK);
         pen.setTypeface(Typeface.SANS_SERIF);
-        pen.setTextSize(40);
+        pen.setTextSize(60);
 
         c.drawText("Get the Green ball into the circle!", 200, 200, pen);
     }
@@ -152,9 +154,10 @@ public class AnimatedSurface extends SurfaceView implements Runnable
     public void drawImage(Canvas c)
     {
         Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.android_image);
-        c.drawBitmap(image, 200, 200, sharedPaint);
+        c.drawBitmap(image, 200, 220, sharedPaint);
     }
 
+    /*
     public void drawRandomRectangles(Canvas c)
     {
         //Choose a random size
@@ -171,8 +174,12 @@ public class AnimatedSurface extends SurfaceView implements Runnable
         //Draw it!
         c.drawRect(x, y, x+40, y+40, special);
     }
+    */
 
     public void drawCircle(Canvas c) {
+        sharedPaint.setStyle(Paint.Style.STROKE);
+        sharedPaint.setStrokeWidth(3);
+        sharedPaint.setColor(Color.WHITE);
         c.drawCircle(100, 100, 60, sharedPaint);
     }
 
@@ -192,15 +199,17 @@ public class AnimatedSurface extends SurfaceView implements Runnable
             touchTrackerPaddle.setColor(Color.BLUE);
         }
 
-        //Update the location of the touchTrackerBall
+        //Update the location of the touchTrackerPaddle
         touchTrackerPaddle.setX((int) event.getX());
         touchTrackerPaddle.setY((int) event.getY());
 
         //If the user touches in the circle, start a new Activity
-        /*if(inCircle((int)event.getX(), (int)event.getY()))
+        if(inCircle((int)event.getX(), (int)event.getY()))
         {
             startSecondActivity();
-        }*/
+            touchTrackerPaddle.setX(20);
+            touchTrackerPaddle.setY(20);
+        }
 
         return true;
     }

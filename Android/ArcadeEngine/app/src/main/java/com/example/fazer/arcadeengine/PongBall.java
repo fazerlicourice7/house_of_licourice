@@ -3,6 +3,8 @@ package com.example.fazer.arcadeengine;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
+import android.widget.Toast;
 
 /**
  * Created by spockm on 8/11/2015.
@@ -16,6 +18,7 @@ public class PongBall
     double xVel; //pixels per second
     double yVel;
     long prevTime;
+    long startTime;
     int radius;
 
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -31,6 +34,8 @@ public class PongBall
         paint.setStrokeWidth(3);
         paint.setColor(Color.GREEN);
         prevTime = System.currentTimeMillis();
+        startTime = System.currentTimeMillis();
+        Log.d("StartTime: " , String.valueOf(startTime));
     }
 
     //Accessors
@@ -49,7 +54,8 @@ public class PongBall
     }
 
     public void drawRect(Canvas c){
-        c.drawRect((float) x - 10,(float) x + 10, (float) y - 10,(float) y + 10, paint);
+        //params : left, top, right, bottom
+        c.drawRect((float) (x - 20), (float) (y + 20), (float) (x + 20), (float) (y - 20), paint);
     }
 
     /**
@@ -67,13 +73,20 @@ public class PongBall
         double dx = xVel*mSecPassed/1000; //Change in x-position
         double dy = yVel*mSecPassed/1000; //Change in y-position
         prevTime = nowTime;
+        if(xVel < 500 && yVel < 500) {
+           if ((nowTime - startTime) % 1000 == 0) {
+                xVel++;
+                yVel++;
+           }
+        }
 
         x+=dx;
         //Bounce off walls
         if(x<radius) { x=radius; xVel=-xVel; }
         if(x>c.getWidth()-radius) { x=c.getWidth()-radius; xVel=-xVel; }
         //bounce off paddle
-        if(x<)
+        //if(x<)
+
         y+=dy;
         //Bounce off walls
         if(y<radius) { y=radius; yVel=-yVel; }
