@@ -31,6 +31,10 @@ public class AnimatedSurface extends SurfaceView implements Runnable
     SurfaceHolder surfaceHolder;
     volatile boolean running = false;
 
+    //constants
+    final int WIN = 1;
+    final int LOSE = 0;
+
 
     /**
      * CONSTRUCTOR -
@@ -203,23 +207,20 @@ public class AnimatedSurface extends SurfaceView implements Runnable
         touchTrackerPaddle.setX((int) event.getX());
         touchTrackerPaddle.setY((int) event.getY());
 
-        //If the user touches in the circle, start a new Activity
-        if(inCircle((int)event.getX(), (int)event.getY()))
-        {
-            startSecondActivity();
-            touchTrackerPaddle.setX(20);
-            touchTrackerPaddle.setY(20);
-        }
-
+        //If the user gets the pong ball in the circle, start a new Activity
+        if(inCircle(ball.getX(),ball.getY()))
+            startSecondActivity(WIN);
         return true;
     }
 
     /**
      * Starts a new Activity!
      */
-    public void startSecondActivity()
+    public void startSecondActivity(int Losewin)
     {
-        context.startActivity(new Intent(context, SecondActivity.class));
+        Intent winLose = new Intent(context, SecondActivity.class);
+        winLose.putExtra("winLose", Losewin);
+        context.startActivity(winLose);
         //Toast is the name for popup messages in Android...
         Toast.makeText(context, "StartingNewActivity", Toast.LENGTH_SHORT).show();
     }
@@ -232,12 +233,11 @@ public class AnimatedSurface extends SurfaceView implements Runnable
      * @param y
      * @return true if (x,y) is contained in the circle.
      */
-    public boolean inCircle(int x, int y)
-    {
-        if(Math.abs(100-x) < 60 && Math.abs(100-y) < 60)
+    public boolean inCircle(double x, double y) {
+        if (Math.abs(100 - x) < 60 && Math.abs(100 - y) < 60)
             return true;
         return false;
-    }
 
+    }
 
 }

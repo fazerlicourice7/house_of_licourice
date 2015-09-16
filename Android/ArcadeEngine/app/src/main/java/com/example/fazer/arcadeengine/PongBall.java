@@ -1,5 +1,7 @@
 package com.example.fazer.arcadeengine;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -64,6 +66,19 @@ public class PongBall
      */
     public void animate(int x2, int y2, Canvas c)
     {
+
+        int TLx, TLy, TRx, TRy, BLx, BLy, BRx, BRy;
+        TLx = x2 - 20;
+        TLy = y2 - 20;
+
+        TRx = x2 + 20;
+        TRy = y2 - 20;
+
+        BLx = x2 - 20;
+        BLy = y2 + 20;
+
+        BRx = x2 + 20;
+        BRy = y2 + 20;
         /*
         Because the Android system is a bit irregular in its time sharing,
         we consider how much time has passed in animating objects to make the movement smoother.
@@ -84,16 +99,30 @@ public class PongBall
         //Bounce off walls
         if(x<radius) { x=radius; xVel=-xVel; }
         if(x>c.getWidth()-radius) { x=c.getWidth()-radius; xVel=-xVel; }
-        //bounce off paddle
-        //if(x<)
 
         y+=dy;
         //Bounce off walls
         if(y<radius) { y=radius; yVel=-yVel; }
         if(y>c.getHeight()-radius) { y=c.getHeight()-radius; yVel=-yVel; }
-        //bounce off paddle
 
+        //bounce off paddle
+        if(x >= TLx && x <= TRx && y >= TLy && y <= BLy){ // is within paddle
+            if(Math.abs(x - x2) == 19){
+                if(x-x2>0)
+                    x = TRx;
+                else if (x-x2<0)
+                    x = TLx;
+                xVel = -xVel;
+            } else if (Math.abs(y - y2) == 19){
+                if(y-y2>0)
+                    y = BLy;
+                else if(y - y2 < 0)
+                    y = TLy;
+                yVel = -yVel;
+            } else {
+
+            }
+        }
 
     }
-
 }

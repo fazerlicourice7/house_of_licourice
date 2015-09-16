@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/background"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/android_image"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"/>
+    <TextView
+        android:textSize="100px"
+        android:id="@+id/WINlose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/quit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="106dp" />
+    <Button
+        android:id="@+id/retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/retry"
+        android:layout_alignTop="@+id/quit"
+        android:layout_toLeftOf="@+id/WINlose"
+        android:layout_toStartOf="@+id/WINlose" />
+    <Button
+        android:id="@+id/quit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/quit"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/WINlose"
+        android:layout_toEndOf="@+id/WINlose" />
+</RelativeLayout>

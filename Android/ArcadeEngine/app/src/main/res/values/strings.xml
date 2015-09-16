@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">ArcadeEngine</string>
-
+    <string name="retry">Play Again</string>
+    <string name="quit">Quit</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 </resources>
