@@ -3,19 +3,18 @@ package com.example.fazer.arcadeengine;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by spockm on 7/1/2014.
  */
 public class SecondActivity extends Activity
 {
+    static boolean active = false;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        active = true;
         setContentView(R.layout.activity_win_lose);
         TextView loseWin = (TextView) findViewById(R.id.WINlose);
         Intent data = getIntent();
@@ -26,6 +25,12 @@ public class SecondActivity extends Activity
             LOSE(loseWin);
         else
             Error(loseWin);
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        active = false;
     }
 
     private void WIN(TextView loseWin){

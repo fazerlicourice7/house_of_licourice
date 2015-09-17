@@ -37,7 +37,7 @@ public class PongBall
         paint.setColor(Color.GREEN);
         prevTime = System.currentTimeMillis();
         startTime = System.currentTimeMillis();
-        Log.d("StartTime: " , String.valueOf(startTime));
+        //Log.d("StartTime: " , String.valueOf(startTime));
     }
 
     //Accessors
@@ -57,28 +57,24 @@ public class PongBall
 
     public void drawRect(Canvas c){
         //params : left, top, right, bottom
-        c.drawRect((float) (x - 20), (float) (y + 20), (float) (x + 20), (float) (y - 20), paint);
+        c.drawRect((float) (x - 30), (float) (y + 30), (float) (x + 30), (float) (y - 30), paint);
     }
 
     /**
      * Updates the location of the PongBall based on time passed and velocity.
+     * @param x2 the x coordinate of the paddle
+     * @param y2 the y coordinate of the paddle
      * @param c the Canvas being drawn on.
      */
     public void animate(int x2, int y2, Canvas c)
     {
 
-        int TLx, TLy, TRx, TRy, BLx, BLy, BRx, BRy;
-        TLx = x2 - 20;
-        TLy = y2 - 20;
+        int Lx, By, Rx, Ty;
+        Lx = x2 - 30;
+        Rx = x2 + 30;
 
-        TRx = x2 + 20;
-        TRy = y2 - 20;
-
-        BLx = x2 - 20;
-        BLy = y2 + 20;
-
-        BRx = x2 + 20;
-        BRy = y2 + 20;
+        Ty = y2 - 30;
+        By = y2 + 30;
         /*
         Because the Android system is a bit irregular in its time sharing,
         we consider how much time has passed in animating objects to make the movement smoother.
@@ -88,12 +84,6 @@ public class PongBall
         double dx = xVel*mSecPassed/1000; //Change in x-position
         double dy = yVel*mSecPassed/1000; //Change in y-position
         prevTime = nowTime;
-        if(xVel < 500 && yVel < 500) {
-           if ((nowTime - startTime) % 1000 == 0) {
-                xVel++;
-                yVel++;
-           }
-        }
 
         x+=dx;
         //Bounce off walls
@@ -106,21 +96,28 @@ public class PongBall
         if(y>c.getHeight()-radius) { y=c.getHeight()-radius; yVel=-yVel; }
 
         //bounce off paddle
-        if(x >= TLx && x <= TRx && y >= TLy && y <= BLy){ // is within paddle
+        if(x >= Lx && x <= Rx && y >= Ty && y <= By){ // is within paddle
+
             if(Math.abs(x - x2) == 19){
                 if(x-x2>0)
-                    x = TRx;
+                    x = Rx + radius;
                 else if (x-x2<0)
-                    x = TLx;
+                    x = Lx - radius;
+                if (xVel > 0)
+                    xVel++;
+                else
+                    xVel--;
                 xVel = -xVel;
-            } else if (Math.abs(y - y2) == 19){
+            } if (Math.abs(y - y2) == 19){
                 if(y-y2>0)
-                    y = BLy;
+                    y = By + radius;
                 else if(y - y2 < 0)
-                    y = TLy;
+                    y = Ty - radius;
+                if(yVel > 0)
+                    yVel++;
+                else
+                    yVel--;
                 yVel = -yVel;
-            } else {
-
             }
         }
 

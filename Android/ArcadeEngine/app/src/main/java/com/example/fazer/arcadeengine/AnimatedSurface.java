@@ -207,9 +207,15 @@ public class AnimatedSurface extends SurfaceView implements Runnable
         touchTrackerPaddle.setX((int) event.getX());
         touchTrackerPaddle.setY((int) event.getY());
 
+        //if second activity is not running
         //If the user gets the pong ball in the circle, start a new Activity
-        if(inCircle(ball.getX(),ball.getY()))
-            startSecondActivity(WIN);
+        //if(SecondActivity.active = false) {
+            if (inCircle(ball.getX(), ball.getY())) {
+                //ball.setX();
+                //ball.setY();
+                startSecondActivity(WIN);
+            }
+       // }
         return true;
     }
 
