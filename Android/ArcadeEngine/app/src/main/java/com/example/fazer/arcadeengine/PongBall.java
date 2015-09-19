@@ -95,31 +95,43 @@ public class PongBall
         if(y<radius) { y=radius; yVel=-yVel; }
         if(y>c.getHeight()-radius) { y=c.getHeight()-radius; yVel=-yVel; }
 
-        //bounce off paddle
-        if(x >= Lx && x <= Rx && y >= Ty && y <= By){ // is within paddle
-
-            if(Math.abs(x - x2) == 19){
-                if(x-x2>0)
-                    x = Rx + radius;
-                else if (x-x2<0)
-                    x = Lx - radius;
-                if (xVel > 0)
-                    xVel++;
-                else
-                    xVel--;
-                xVel = -xVel;
-            } if (Math.abs(y - y2) == 19){
-                if(y-y2>0)
-                    y = By + radius;
-                else if(y - y2 < 0)
-                    y = Ty - radius;
-                if(yVel > 0)
-                    yVel++;
-                else
-                    yVel--;
-                yVel = -yVel;
+        if(x2 != 0 && y2 != 0) {
+            //Log.d("paddle location", String.valueOf(x2) + "," + String.valueOf(y2));
+            //bounce off paddle
+            if (x >= Lx && x <= Rx && y >= Ty && y <= By) { // is within paddle
+                Log.d("ball", "is within paddle");
+                if (Math.abs(x - x2) == 19) {
+                    if (x - x2 > 0) {
+                        Log.d("Position", "right");
+                        x = Rx + radius;
+                    } else if (x - x2 < 0) {
+                        Log.d("Position", "left");
+                        x = Lx - radius;
+                    }else
+                    Log.d("Position", "In the god damn center");
+                    if (xVel > 0)
+                        xVel++;
+                    else
+                        xVel--;
+                    xVel = -xVel;
+                }
+                if (Math.abs(y - y2) == 19) {
+                    if (y - y2 > 0) {
+                        Log.d("Position", "bottom");
+                        y = By + radius;
+                    } else if (y - y2 < 0) {
+                        Log.d("Position", "top");
+                        y = Ty - radius;
+                    }else
+                    Log.d("Position", "In the god damn center");
+                    if (yVel > 0)
+                        yVel++;
+                    else
+                        yVel--;
+                    yVel = -yVel;
+                    // }
+                }
             }
         }
-
     }
 }

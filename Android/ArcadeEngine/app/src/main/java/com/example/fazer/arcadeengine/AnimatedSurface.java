@@ -20,6 +20,7 @@ import java.util.Random;
  */
 public class AnimatedSurface extends SurfaceView implements Runnable
 {
+    static boolean donePlaying = false;
     //Instance variables
     private PongBall ball = new PongBall(); //This is the green PongBall that moves around.
     private PongBall touchTrackerPaddle;          //This is the blue Paddle that tracks touches.
@@ -97,7 +98,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable
                 //drawBorder(canvas);
                 drawCircle(canvas);
                 drawText(canvas);
-//                drawRandomRectangles(canvas); //often commented out because it is annoying!
+//              drawRandomRectangles(canvas); //often commented out because it is annoying!
                 drawImage(canvas);
 
                 //location of paddle
@@ -109,7 +110,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable
                 //Animating and drawing movable objects.
                 ball.animate(x2, y2, canvas);
                 ball.draw(canvas);
-                if(touchTrackerPaddle != null) //No track ball appears until first touch.
+                if(touchTrackerPaddle != null) //No tracker paddle  appears until first touch.
                     touchTrackerPaddle.drawRect(canvas);
                 surfaceHolder.unlockCanvasAndPost(canvas);
             }
@@ -119,6 +120,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable
     public void clearScreen(Canvas c)
     {
         //This fills the screen with whatever color (r,g,b) you choose.
+        //currently pink-ish
         c.drawRGB(255, 0, 127);
     }
 
@@ -197,7 +199,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable
     public boolean onTouchEvent(MotionEvent event)
     {
         //Construct the PongBall on the first touch of the screen.
-        if (touchTrackerPaddle ==null)
+        if (touchTrackerPaddle == null)
         {
             touchTrackerPaddle = new PongBall();
             touchTrackerPaddle.setColor(Color.BLUE);
@@ -209,13 +211,13 @@ public class AnimatedSurface extends SurfaceView implements Runnable
 
         //if second activity is not running
         //If the user gets the pong ball in the circle, start a new Activity
-        //if(SecondActivity.active = false) {
+        if(donePlaying = false) {
             if (inCircle(ball.getX(), ball.getY())) {
                 //ball.setX();
                 //ball.setY();
                 startSecondActivity(WIN);
             }
-       // }
+        }
         return true;
     }
 
@@ -224,7 +226,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable
      */
     public void startSecondActivity(int Losewin)
     {
-        Intent winLose = new Intent(context, SecondActivity.class);
+        Intent winLose = new Intent(context, WINorLOSE.class);
         winLose.putExtra("winLose", Losewin);
         context.startActivity(winLose);
         //Toast is the name for popup messages in Android...
