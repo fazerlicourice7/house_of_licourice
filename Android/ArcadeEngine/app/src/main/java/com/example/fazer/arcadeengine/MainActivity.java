@@ -1,66 +1,53 @@
 package com.example.fazer.arcadeengine;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MotionEvent;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
-import android.widget.Toast;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
-import java.util.Random;
+public class MainActivity extends AppCompatActivity {
 
-/**
- * Created by spockm on 6/25/2014.
- */
-public class MainActivity extends Activity {
-
-    AnimatedSurface mySurfaceView;
-
-    /** Called when the activity is first created. */
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mySurfaceView = new AnimatedSurface(this);
-        setContentView(mySurfaceView);
+        setContentView(R.layout.activity_main);
+Button STARTGAME = (Button) findViewById(R.id.startGame);
+        STARTGAME.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+            start();
+            }
+        });
     }
 
     @Override
-    protected void onResume() {
-        // TODO Auto-generated method stub
-        super.onResume();
-        mySurfaceView.onResumeMySurfaceView();
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
     @Override
-    protected void onPause() {
-        // TODO Auto-generated method stub
-        super.onPause();
-        mySurfaceView.onPauseMySurfaceView();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
-//    public boolean onTouchEvent(MotionEvent event)
-//    {
-//        //THIS METHOD NEVER RUNS...
-//        Toast.makeText(this, "Something", Toast.LENGTH_SHORT).show();
-//
-//        if(event.getX() < 100)
-//        {
-//            Toast.makeText(this, "CornerEvent", Toast.LENGTH_SHORT).show();
-//
-////            startSecondActivity();
-//        }
-//        return true;
-//    }
-//
-//
-//    public void startSecondActivity()
-//    {
-//        startActivity(new Intent(MainActivity.this, SecondActivity.class));
-//    }
-
+    protected void start(){
+        //whatIsAContext =
+        Intent playGame = new Intent(this, startActivity.class);
+        startActivity(playGame);
+    }
 }

@@ -20,7 +20,6 @@ import java.util.Random;
  */
 public class AnimatedSurface extends SurfaceView implements Runnable
 {
-    static boolean donePlaying = false;
     //Instance variables
     private PongBall ball = new PongBall(); //This is the green PongBall that moves around.
     private PongBall touchTrackerPaddle;          //This is the blue Paddle that tracks touches.
@@ -28,7 +27,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable
 
     Paint sharedPaint = new Paint(Paint.ANTI_ALIAS_FLAG); //A shared paint object
     Thread thread = null;
-    Context context;
+    static Context context;
     SurfaceHolder surfaceHolder;
     volatile boolean running = false;
 
@@ -211,7 +210,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable
 
         //if second activity is not running
         //If the user gets the pong ball in the circle, start a new Activity
-        if(donePlaying = false) {
+        if(!WINorLOSE.donePlaying) {
             if (inCircle(ball.getX(), ball.getY())) {
                 //ball.setX();
                 //ball.setY();
@@ -224,13 +223,11 @@ public class AnimatedSurface extends SurfaceView implements Runnable
     /**
      * Starts a new Activity!
      */
-    public void startSecondActivity(int Losewin)
+    public static void startSecondActivity(int Losewin)
     {
         Intent winLose = new Intent(context, WINorLOSE.class);
         winLose.putExtra("winLose", Losewin);
         context.startActivity(winLose);
-        //Toast is the name for popup messages in Android...
-        Toast.makeText(context, "StartingNewActivity", Toast.LENGTH_SHORT).show();
     }
 
     /**

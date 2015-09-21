@@ -23,6 +23,8 @@ public class PongBall
     long startTime;
     int radius;
 
+    final int LOSE = 0;
+
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
     public PongBall()
@@ -93,7 +95,10 @@ public class PongBall
         y+=dy;
         //Bounce off walls
         if(y<radius) { y=radius; yVel=-yVel; }
-        if(y>c.getHeight()-radius) { y=c.getHeight()-radius; yVel=-yVel; }
+        if(y>c.getHeight()-radius) {
+            if(!WINorLOSE.donePlaying)
+                AnimatedSurface.startSecondActivity(LOSE);
+        }
 
         if(x2 != 0 && y2 != 0) {
             //Log.d("paddle location", String.valueOf(x2) + "," + String.valueOf(y2));
@@ -101,21 +106,22 @@ public class PongBall
             if (x >= Lx && x <= Rx && y >= Ty && y <= By) { // is within paddle
                 Log.d("ball", "is within paddle");
                 if (Math.abs(x - x2) == 19) {
+                    xVel = -xVel;
                     if (x - x2 > 0) {
                         Log.d("Position", "right");
                         x = Rx + radius;
                     } else if (x - x2 < 0) {
                         Log.d("Position", "left");
                         x = Lx - radius;
-                    }else
+                    }
                     Log.d("Position", "In the god damn center");
                     if (xVel > 0)
                         xVel++;
                     else
                         xVel--;
-                    xVel = -xVel;
                 }
                 if (Math.abs(y - y2) == 19) {
+                    yVel = -yVel;
                     if (y - y2 > 0) {
                         Log.d("Position", "bottom");
                         y = By + radius;
@@ -128,7 +134,7 @@ public class PongBall
                         yVel++;
                     else
                         yVel--;
-                    yVel = -yVel;
+
                     // }
                 }
             }
