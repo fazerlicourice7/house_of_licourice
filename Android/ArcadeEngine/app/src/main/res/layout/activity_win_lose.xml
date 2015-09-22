@@ -26,16 +26,15 @@
         android:layout_height="wrap_content"
         android:onClick="playAgain"
         android:text="@string/retry"
-        android:layout_alignTop="@+id/quit"
-        android:layout_toLeftOf="@+id/WINlose"
-        android:layout_toStartOf="@+id/WINlose" />
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
     <Button
         android:id="@+id/quit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="quit"
         android:text="@string/quit"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/WINlose"
-        android:layout_toEndOf="@+id/WINlose" />
+        android:layout_marginTop="62dp"
+        android:layout_below="@+id/retry"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

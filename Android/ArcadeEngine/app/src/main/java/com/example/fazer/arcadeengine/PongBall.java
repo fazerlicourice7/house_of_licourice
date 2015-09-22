@@ -98,6 +98,8 @@ public class PongBall
         if(y>c.getHeight()-radius) {
             if(!WINorLOSE.donePlaying)
                 AnimatedSurface.startSecondActivity(LOSE);
+                y = c.getWidth() / 2;
+                x = c.getHeight() / 2;
         }
 
         if(x2 != 0 && y2 != 0) {
@@ -105,7 +107,7 @@ public class PongBall
             //bounce off paddle
             if (x >= Lx && x <= Rx && y >= Ty && y <= By) { // is within paddle
                 Log.d("ball", "is within paddle");
-                if (Math.abs(x - x2) == 19) {
+                if (Math.abs(x - x2) < 30) {
                     xVel = -xVel;
                     if (x - x2 > 0) {
                         Log.d("Position", "right");
@@ -113,14 +115,15 @@ public class PongBall
                     } else if (x - x2 < 0) {
                         Log.d("Position", "left");
                         x = Lx - radius;
-                    }
-                    Log.d("Position", "In the god damn center");
+                    }else
+                        Log.d("Position", "In the center");
+
                     if (xVel > 0)
                         xVel++;
                     else
                         xVel--;
                 }
-                if (Math.abs(y - y2) == 19) {
+                if (Math.abs(y - y2) <= 30) {
                     yVel = -yVel;
                     if (y - y2 > 0) {
                         Log.d("Position", "bottom");
@@ -129,13 +132,12 @@ public class PongBall
                         Log.d("Position", "top");
                         y = Ty - radius;
                     }else
-                    Log.d("Position", "In the god damn center");
+                        Log.d("Position", "In the center");
+
                     if (yVel > 0)
                         yVel++;
                     else
                         yVel--;
-
-                    // }
                 }
             }
         }

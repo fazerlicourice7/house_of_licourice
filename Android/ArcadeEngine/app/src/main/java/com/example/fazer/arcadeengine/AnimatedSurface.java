@@ -99,7 +99,6 @@ public class AnimatedSurface extends SurfaceView implements Runnable
                 drawText(canvas);
 //              drawRandomRectangles(canvas); //often commented out because it is annoying!
                 drawImage(canvas);
-
                 //location of paddle
                 int x2 = 0, y2 = 0;
                 if(touchTrackerPaddle != null) {
@@ -183,7 +182,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable
 
     public void drawCircle(Canvas c) {
         sharedPaint.setStyle(Paint.Style.STROKE);
-        sharedPaint.setStrokeWidth(3);
+        sharedPaint.setStrokeWidth(1);
         sharedPaint.setColor(Color.WHITE);
         c.drawCircle(100, 100, 60, sharedPaint);
     }
@@ -238,11 +237,10 @@ public class AnimatedSurface extends SurfaceView implements Runnable
      * @param y
      * @return true if (x,y) is contained in the circle.
      */
-    public boolean inCircle(double x, double y) {
+    public boolean inCircle(int x, int y) {
         if (Math.abs(100 - x) < 60 && Math.abs(100 - y) < 60)
             return true;
         return false;
-
     }
 
 }
