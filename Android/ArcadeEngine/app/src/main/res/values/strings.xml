@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BounceBall</string>
+    <string name="app_name">Bounce Around</string>
     <string name="game">Game</string>
     <string name="retry">Play Again</string>
     <string name="quit">Quit</string>

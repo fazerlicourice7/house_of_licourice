@@ -21,9 +21,11 @@ public class PongBall
     double yVel;
     long prevTime;
     long startTime;
-    int radius;
+    static int radius;
 
     final int LOSE = 0;
+
+    startSecondActivity StartSecondActivity = new startSecondActivity();
 
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
@@ -71,12 +73,14 @@ public class PongBall
     public void animate(int x2, int y2, Canvas c)
     {
 
+        //outside coordinates of the paddle
         int Lx, By, Rx, Ty;
         Lx = x2 - 30;
         Rx = x2 + 30;
 
         Ty = y2 - 30;
         By = y2 + 30;
+
         /*
         Because the Android system is a bit irregular in its time sharing,
         we consider how much time has passed in animating objects to make the movement smoother.
@@ -97,7 +101,7 @@ public class PongBall
         if(y<radius) { y=radius; yVel=-yVel; }
         if(y>c.getHeight()-radius) {
             if(!WINorLOSE.donePlaying)
-                AnimatedSurface.startSecondActivity(LOSE);
+                StartSecondActivity.startSecondActivity(LOSE);
                 y = c.getWidth() / 2;
                 x = c.getHeight() / 2;
         }
@@ -105,10 +109,9 @@ public class PongBall
         if(x2 != 0 && y2 != 0) {
             //Log.d("paddle location", String.valueOf(x2) + "," + String.valueOf(y2));
             //bounce off paddle
-            if (x >= Lx && x <= Rx && y >= Ty && y <= By) { // is within paddle
+            if ((x + radius) >= Lx && (x - radius) <= Rx && (y + radius) >= Ty && (y - radius) <= By) { // is within paddle
                 Log.d("ball", "is within paddle");
-                if (Math.abs(x - x2) < 30) {
-                    xVel = -xVel;
+                if (Math.abs((x + radius) - x2) >= 29) {
                     if (x - x2 > 0) {
                         Log.d("Position", "right");
                         x = Rx + radius;
@@ -117,14 +120,13 @@ public class PongBall
                         x = Lx - radius;
                     }else
                         Log.d("Position", "In the center");
-
-                    if (xVel > 0)
+                    xVel = -xVel;
+                  /*if (xVel > 0)
                         xVel++;
                     else
-                        xVel--;
+                        xVel--;  */
                 }
-                if (Math.abs(y - y2) <= 30) {
-                    yVel = -yVel;
+                if (Math.abs((y + radius) - y2) >= 29) {
                     if (y - y2 > 0) {
                         Log.d("Position", "bottom");
                         y = By + radius;
@@ -134,10 +136,12 @@ public class PongBall
                     }else
                         Log.d("Position", "In the center");
 
-                    if (yVel > 0)
+                    yVel = -yVel;
+
+                   /*if (yVel > 0)
                         yVel++;
                     else
-                        yVel--;
+                        yVel--; */
                 }
             }
         }

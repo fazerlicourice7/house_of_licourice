@@ -1,5 +1,6 @@
 package com.example.fazer.arcadeengine;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -29,12 +30,15 @@ public class AnimatedSurface extends SurfaceView implements Runnable
     Thread thread = null;
     static Context context;
     SurfaceHolder surfaceHolder;
-    volatile boolean running = false;
+    static volatile boolean running = false;
+
+    startSecondActivity StartSecondActivity = new startSecondActivity();
+    int Cx = 100, Cy = 100, Cr = 60;
+
+    boolean firstTime = true;
 
     //constants
     final int WIN = 1;
-    final int LOSE = 0;
-
 
     /**
      * CONSTRUCTOR -
@@ -91,9 +95,9 @@ public class AnimatedSurface extends SurfaceView implements Runnable
                  * from the old ArcadeEngine.  The Canvas is analogous to a Graphics object.
                  * =====================================================================
                  */
-
                 //Drawing stationary objects.
                 clearScreen(canvas);
+                //firstTime = false;
                 //drawBorder(canvas);
                 drawCircle(canvas);
                 drawText(canvas);
@@ -112,14 +116,33 @@ public class AnimatedSurface extends SurfaceView implements Runnable
                     touchTrackerPaddle.drawRect(canvas);
                 surfaceHolder.unlockCanvasAndPost(canvas);
             }
+            //if second activity is not running
+            //If the user gets the pong ball in the circle, start a new Activity
+            if(!WINorLOSE.donePlaying) {
+                if (inCircle(ball.getX(), ball.getY())) {
+                    //ball.setX();
+                    //ball.setY();
+                    StartSecondActivity.startSecondActivity(WIN);
+                    ((Activity)getContext()).finish();
+                }
+            }
         }
     }
 
     public void clearScreen(Canvas c)
     {
-        //This fills the screen with whatever color (r,g,b) you choose.
-        //currently pink-ish
-        c.drawRGB(255, 0, 127);
+        int RED = 0, GREEN = 0, BLUE = 0;
+        if(firstTime) {
+            //This fills the screen with a random color (r,g,b).
+            Random redR = new Random();
+            Random greenR = new Random();
+            Random blueR = new Random();
+            RED = redR.nextInt(255);
+            GREEN = greenR.nextInt(255);
+            BLUE = blueR.nextInt(255);
+            firstTime = false;
+        }
+            c.drawRGB(RED, GREEN, BLUE);
     }
 
     public void drawBorder(Canvas c)
@@ -127,7 +150,6 @@ public class AnimatedSurface extends SurfaceView implements Runnable
         sharedPaint.setStyle(Paint.Style.STROKE);
         sharedPaint.setStrokeWidth(5);
         sharedPaint.setColor(Color.RED);
-
         c.drawRect(0, 0, c.getWidth(), c.getHeight(), sharedPaint);
     }
 
@@ -181,10 +203,10 @@ public class AnimatedSurface extends SurfaceView implements Runnable
     */
 
     public void drawCircle(Canvas c) {
-        sharedPaint.setStyle(Paint.Style.STROKE);
-        sharedPaint.setStrokeWidth(1);
-        sharedPaint.setColor(Color.WHITE);
-        c.drawCircle(100, 100, 60, sharedPaint);
+            sharedPaint.setStyle(Paint.Style.STROKE);
+            sharedPaint.setStrokeWidth(1);
+            sharedPaint.setColor(Color.WHITE);
+            c.drawCircle(Cx, Cy, Cr, sharedPaint);
     }
 
     /**
@@ -206,39 +228,20 @@ public class AnimatedSurface extends SurfaceView implements Runnable
         //Update the location of the touchTrackerPaddle
         touchTrackerPaddle.setX((int) event.getX());
         touchTrackerPaddle.setY((int) event.getY());
-
-        //if second activity is not running
-        //If the user gets the pong ball in the circle, start a new Activity
-        if(!WINorLOSE.donePlaying) {
-            if (inCircle(ball.getX(), ball.getY())) {
-                //ball.setX();
-                //ball.setY();
-                startSecondActivity(WIN);
-            }
-        }
         return true;
     }
 
     /**
-     * Starts a new Activity!
-     */
-    public static void startSecondActivity(int Losewin)
-    {
-        Intent winLose = new Intent(context, WINorLOSE.class);
-        winLose.putExtra("winLose", Losewin);
-        context.startActivity(winLose);
-    }
-
-    /**
      * A method to determine if a point (x,y) is in a circle.
-     * The circle being checked is centered at 100,100 with radius 60
+     * The circle being checked is centered at Cx,Cy with radius Cr
      * (The circle from the drawCircle method in this demo.)
      * @param x
      * @param y
      * @return true if (x,y) is contained in the circle.
      */
     public boolean inCircle(int x, int y) {
-        if (Math.abs(100 - x) < 60 && Math.abs(100 - y) < 60)
+        int radius = PongBall.radius;
+        if (Math.abs(Cx - (x + radius)) < Cr && Math.abs(Cy - (y + radius)) < Cr)
             return true;
         return false;
     }

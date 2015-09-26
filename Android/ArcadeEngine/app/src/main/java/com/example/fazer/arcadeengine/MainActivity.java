@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-Button STARTGAME = (Button) findViewById(R.id.startGame);
+        Button STARTGAME = (Button) findViewById(R.id.startGame);
         STARTGAME.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
             start();
@@ -49,5 +49,6 @@ Button STARTGAME = (Button) findViewById(R.id.startGame);
         //whatIsAContext =
         Intent playGame = new Intent(this, startActivity.class);
         startActivity(playGame);
+        finish();
     }
 }

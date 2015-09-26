@@ -13,7 +13,7 @@ public class WINorLOSE extends Activity
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         donePlaying = true;
+        donePlaying = true;
         setContentView(R.layout.activity_win_lose);
         TextView loseWin = (TextView) findViewById(R.id.WINlose);
         Intent data = getIntent();
@@ -44,8 +44,8 @@ public class WINorLOSE extends Activity
     }
 
     @Override
-    public void onStop(){
-        super.onStop();
+    public void onDestroy(){
+        super.onDestroy();
         donePlaying = false;
     }
 
