@@ -17,6 +17,5 @@ public class startSecondActivity {
         winLose.putExtra("winLose", Losewin);
         winLose.putExtra("score", Score);
         context.startActivity(winLose);
-
     }
 }

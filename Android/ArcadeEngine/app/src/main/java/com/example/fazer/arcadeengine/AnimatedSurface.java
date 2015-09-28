@@ -36,6 +36,8 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
 
     boolean firstTime = true;
 
+    int SCORE = 0;
+
     //constants
     final int WIN = 1;
 
@@ -88,10 +90,15 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
         while (running) {
             if (surfaceHolder.getSurface().isValid()) {
                 Canvas canvas = surfaceHolder.lockCanvas();
+<<<<<<< HEAD
                 int ballR = canvas.getHeight() / 96;
                 int xSide = canvas.getWidth() / 18;
                 int ySide = canvas.getHeight() / 32;
                 //int SCORE;
+=======
+                PongBall.radius = canvas.getHeight() / 96;
+                PongBall.side = canvas.getHeight() / 48;
+>>>>>>> 214ef92c4589d97e9da41e637423370311efaeae
                 /**
                  * =====================================================================
                  * This is where the actual drawing on the canvas takes place.
@@ -102,9 +109,14 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
 
                 //Drawing stationary objects.
                 clearScreen(canvas);
+<<<<<<< HEAD
                 drawCircle(canvas);
                 drawText(canvas);
                 drawScore(canvas, startActivity.SCORE);
+=======
+                drawCircle(canvas, false);
+                drawText(canvas);
+>>>>>>> 214ef92c4589d97e9da41e637423370311efaeae
                 drawImage(canvas);
 
                 //location of paddle
@@ -116,6 +128,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
 
                 //Animating and drawing movable objects.
                 ball.animate(x2, y2, canvas);
+<<<<<<< HEAD
                 ball.draw(canvas, ballR);
                 if (touchTrackerPaddle != null) //No tracker paddle  appears until first touch.
                     touchTrackerPaddle.drawRect(canvas, xSide, ySide);
@@ -131,8 +144,23 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
                     reStart.putExtra("SCORE", startActivity.SCORE + 1);
                     context.startActivity(reStart);
                     ((Activity) getContext()).finish();
+=======
+                ball.draw(canvas);
+                if (touchTrackerPaddle != null) //No tracker paddle  appears until first touch.
+                    touchTrackerPaddle.drawRect(canvas);
+
+                //if second activity is not running
+                //If the user gets the pong ball in the circle, start a new Activity
+                if (!WINorLOSE.donePlaying) {
+                    if (inCircle(ball.getX(), ball.getY())) {
+                        SCORE++;
+                        drawCircle(canvas, true);
+                    }
+>>>>>>> 214ef92c4589d97e9da41e637423370311efaeae
                 }
+                surfaceHolder.unlockCanvasAndPost(canvas);
             }
+
         }
     }
 
@@ -171,9 +199,18 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
         pen.setStrokeWidth(2);
         pen.setColor(Color.BLACK);
         pen.setTypeface(Typeface.SANS_SERIF);
-        pen.setTextSize(60);
+        pen.setTextSize(45);
+        c.drawText("Get the Green ball into the circle!", 0, c.getHeight() / 10, pen);
+    }
 
-        c.drawText("Get the Green ball into the circle!", 200, 200, pen);
+    public void drawScore(Canvas c){
+        Paint scorePen = new Paint(Paint.LINEAR_TEXT_FLAG);
+        scorePen.setStyle(Paint.Style.STROKE);
+        scorePen.setStrokeWidth(2);
+        scorePen.setColor(Color.BLACK);
+        scorePen.setTypeface(Typeface.SANS_SERIF);
+        scorePen.setTextSize(30);
+        c.drawText(String.valueOf(SCORE), x, y, scorePen);
     }
 
     /**
@@ -200,6 +237,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
      */
     public void drawImage(Canvas c) {
         Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.android_image);
+<<<<<<< HEAD
         int centerX = c.getWidth() / 2;
         int centerY = c.getHeight() / 2;
         c.drawBitmap(image, centerX, centerY, sharedPaint);
@@ -219,6 +257,28 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
             Cx = random.nextInt(c.getWidth() - Cr);
         while(Cy > Cr)
             Cy = random.nextInt(c.getHeight() - Cr);
+=======
+        int height = image.getHeight();
+        int width = image.getWidth();
+        int height2 = c.getHeight();
+        int width2 = c.getWidth();
+        int left = (width2 / 2) - (width / 2);
+        int top = (height2 / 2) - (height / 2);
+        c.drawBitmap(image, left, top, sharedPaint);
+    }
+
+    public void drawCircle(Canvas c, boolean change) {
+        if (change) {
+            Cx = random.nextInt(c.getWidth());
+            Cy = random.nextInt(c.getHeight());
+            while (Cr < PongBall.radius) {
+                Cr = random.nextInt(c.getWidth() / 2);
+            }
+        }
+        sharedPaint.setStyle(Paint.Style.STROKE);
+        sharedPaint.setStrokeWidth(1);
+        sharedPaint.setColor(Color.WHITE);
+>>>>>>> 214ef92c4589d97e9da41e637423370311efaeae
         c.drawCircle(Cx, Cy, Cr, sharedPaint);
     }
 
