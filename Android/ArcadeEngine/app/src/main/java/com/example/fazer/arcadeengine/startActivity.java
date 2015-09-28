@@ -20,11 +20,14 @@ import java.util.Random;
 public class startActivity extends Activity {
 
     AnimatedSurface mySurfaceView;
+    static int SCORE;
 
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent stuff = getIntent();
+        SCORE = stuff.getIntExtra("SCORE", 0);
         mySurfaceView = new AnimatedSurface(this);
         setContentView(mySurfaceView);
     }

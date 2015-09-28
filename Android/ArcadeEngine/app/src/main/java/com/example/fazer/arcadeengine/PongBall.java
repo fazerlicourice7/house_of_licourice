@@ -54,14 +54,14 @@ public class PongBall
     public void setColor(int c) { paint.setColor(c); }
 
     //Methods
-    public void draw(Canvas c)
+    public void draw(Canvas c, int radius)
     {
         c.drawCircle((float) x, (float) y, radius, paint);
     }
 
-    public void drawRect(Canvas c){
+    public void drawRect(Canvas c, int width, int length){
         //params : left, top, right, bottom
-        c.drawRect((float) (x - 30), (float) (y + 30), (float) (x + 30), (float) (y - 30), paint);
+        c.drawRect((float) (x - (width / 2)), (float) (y + (length / 2)), (float) (x + (width / 2)), (float) (y - (length / 2)), paint);
     }
 
     /**
@@ -101,7 +101,7 @@ public class PongBall
         if(y<radius) { y=radius; yVel=-yVel; }
         if(y>c.getHeight()-radius) {
             if(!WINorLOSE.donePlaying)
-                StartSecondActivity.startSecondActivity(LOSE);
+                StartSecondActivity.startSecondActivity(LOSE, startActivity.SCORE);
                 y = c.getWidth() / 2;
                 x = c.getHeight() / 2;
         }

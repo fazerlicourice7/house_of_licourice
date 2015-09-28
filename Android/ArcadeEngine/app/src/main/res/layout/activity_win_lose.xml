@@ -6,12 +6,32 @@
     <View
         android:id="@+id/background"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:background="@drawable/android_image"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="false"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"/>
+
+    <Button
+        android:id="@+id/quit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="quit"
+        android:text="@string/quit"
+        android:layout_gravity="center_horizontal"
+        android:layout_above="@+id/retry"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="44dp" />
+
+    <TextView
+        android:id="@+id/score"
+        android:textSize="80px"
+        android:textStyle="italic"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/WINlose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <TextView
         android:textSize="100px"
         android:id="@+id/WINlose"
@@ -26,15 +46,7 @@
         android:layout_height="wrap_content"
         android:onClick="playAgain"
         android:text="@string/retry"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-    <Button
-        android:id="@+id/quit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="quit"
-        android:text="@string/quit"
-        android:layout_marginTop="62dp"
-        android:layout_below="@+id/retry"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="57dp" />
 </RelativeLayout>

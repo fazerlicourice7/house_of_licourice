@@ -16,8 +16,11 @@ public class WINorLOSE extends Activity
         donePlaying = true;
         setContentView(R.layout.activity_win_lose);
         TextView loseWin = (TextView) findViewById(R.id.WINlose);
+        TextView ScOrE = (TextView) findViewById(R.id.score);
         Intent data = getIntent();
         int winLose = data.getIntExtra("winLose", -1);
+        int SCORE = data.getIntExtra("score", 0);
+        ScOrE.setText(String.valueOf(SCORE));
         if(winLose == 1)
             WIN(loseWin);
         else if (winLose == 0)
