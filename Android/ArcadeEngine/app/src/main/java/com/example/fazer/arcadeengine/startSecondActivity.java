@@ -16,6 +16,5 @@ public class startSecondActivity {
         Intent winLose = new Intent(context, WINorLOSE.class);
         winLose.putExtra("winLose", Losewin);
         context.startActivity(winLose);
-
     }
 }
