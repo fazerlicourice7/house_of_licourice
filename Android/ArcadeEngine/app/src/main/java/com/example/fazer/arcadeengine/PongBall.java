@@ -65,24 +65,15 @@ public class PongBall {
     }
 
     //Methods
-<<<<<<< HEAD
-    public void draw(Canvas c, int radius)
-    {
-        c.drawCircle((float) x, (float) y, radius, paint);
-    }
 
-    public void drawRect(Canvas c, int width, int length){
-        //params : left, top, right, bottom
-        c.drawRect((float) (x - (width / 2)), (float) (y + (length / 2)), (float) (x + (width / 2)), (float) (y - (length / 2)), paint);
-=======
-    public void draw(Canvas c) {
+    /**
+     * Draws a circle at point (x,y) with a radius of 'radius'
+     *
+     * @param c
+     * @param radius
+     */
+    public void draw(Canvas c, int radius) {
         c.drawCircle(x, y, radius, paint);
-    }
-
-    public void drawRect(Canvas c) {
-        //params : left, top, right, bottom
-        c.drawRect(x - 30, y + 30, x + 30, y - 30, paint);
->>>>>>> 214ef92c4589d97e9da41e637423370311efaeae
     }
 
     /**
@@ -125,30 +116,20 @@ public class PongBall {
 
         y += dy;
         //Bounce off walls
-<<<<<<< HEAD
-        if(y<radius) { y=radius; yVel=-yVel; }
-        if(y>c.getHeight()-radius) {
-            if(!WINorLOSE.donePlaying)
+        if (y > c.getHeight() - radius) {
+            if (!WINorLOSE.donePlaying)
                 StartSecondActivity.startSecondActivity(LOSE, startActivity.SCORE);
-                y = c.getWidth() / 2;
-                x = c.getHeight() / 2;
-=======
+        }
         if (y < radius) {
             y = radius;
             yVel = -yVel;
         }
-        if (y > c.getHeight() - radius) {
-            if (!WINorLOSE.donePlaying)
-                StartSecondActivity.startSecondActivity(LOSE);
->>>>>>> 214ef92c4589d97e9da41e637423370311efaeae
-        }
 
         if (x2 != 0 && y2 != 0) {
-            //Log.d("paddle location", String.valueOf(x2) + "," + String.valueOf(y2));
             //bounce off paddle
             if ((x + radius) >= Lx && (x - radius) <= Rx && (y + radius) >= Ty && (y - radius) <= By) { // is within paddle
                 Log.d("ball", "is within paddle");
-                if (Math.abs((x + radius) - x2) >= 29) {
+                if (Math.abs((x + radius) - x2) >= (side - 1)) {
                     if (x - x2 > 0) {
                         Log.d("Position", "right");
                         x = Rx + radius;
@@ -159,13 +140,13 @@ public class PongBall {
                         Log.d("Position", "In the center");
                     xVel = -xVel;
 
-                  /*if (xVel > 0)
+                    if (xVel > 0)
                         xVel++;
                     else
-                        xVel--;  */
+                        xVel--;
 
                 }
-                if (Math.abs((y + radius) - y2) >= 29) {
+                if (Math.abs((y + radius) - y2) >= (side - 1)) {
                     if (y - y2 > 0) {
                         Log.d("Position", "bottom");
                         y = By + radius;
@@ -177,12 +158,13 @@ public class PongBall {
 
                     yVel = -yVel;
 
-                   /*if (yVel > 0)
+                    if (yVel > 0)
                         yVel++;
                     else
-                        yVel--; */
+                        yVel--;
                 }
             }
         }
     }
 }
+

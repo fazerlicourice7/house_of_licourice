@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void start(){
-        //whatIsAContext =
         Intent playGame = new Intent(this, startActivity.class);
         startActivity(playGame);
         finish();
