@@ -20,9 +20,8 @@
         android:onClick="quit"
         android:text="@string/quit"
         android:layout_gravity="center_horizontal"
-        android:layout_above="@+id/retry"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="44dp" />
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/score"
@@ -46,7 +45,7 @@
         android:layout_height="wrap_content"
         android:onClick="playAgain"
         android:text="@string/retry"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="57dp" />
+        android:layout_marginTop="47dp"
+        android:layout_below="@+id/quit"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

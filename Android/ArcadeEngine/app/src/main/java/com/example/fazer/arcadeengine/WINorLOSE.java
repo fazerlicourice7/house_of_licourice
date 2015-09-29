@@ -9,11 +9,11 @@ import android.widget.TextView;
 
 public class WINorLOSE extends Activity
 {
-    public static boolean donePlaying = false;
+    //public static boolean donePlaying = false;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        donePlaying = true;
+        AnimatedSurface.running = false;
         setContentView(R.layout.activity_win_lose);
         TextView loseWin = (TextView) findViewById(R.id.WINlose);
         TextView ScOrE = (TextView) findViewById(R.id.score);
@@ -49,7 +49,13 @@ public class WINorLOSE extends Activity
     @Override
     public void onDestroy(){
         super.onDestroy();
-        donePlaying = false;
+        AnimatedSurface.running = true;
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        AnimatedSurface.running = true;
     }
 
     private void WIN(TextView loseWin){ loseWin.setText("You Win!!"); }
