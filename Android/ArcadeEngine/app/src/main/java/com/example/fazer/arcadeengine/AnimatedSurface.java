@@ -18,6 +18,7 @@ import java.util.Random;
 
 /**
  * Created by spockm on 8/11/2015.
+ * Modified by balanagav
  */
 public class AnimatedSurface extends SurfaceView implements Runnable {
 
@@ -36,6 +37,8 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
     boolean firstTime = true;
     String text = "Get the ball into the circle";
     int SCORE = 0;
+    int RED = 0, GREEN = 0, BLUE = 0;
+    int paddlehl, yval;
 
     /**
      * CONSTRUCTOR -
@@ -89,8 +92,11 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
                 Canvas canvas = surfaceHolder.lockCanvas();
 
                 int ballR = canvas.getHeight() / 64;
-                int xSide = canvas.getWidth() / 12;
+                int xSide = canvas.getWidth() / 10;
                 int ySide = canvas.getHeight() / 21;
+
+                paddlehl = (int) (canvas.getHeight()  - canvas.getHeight()/ 10.5);
+                yval = paddlehl + ySide;
 
                 /**
                  * =====================================================================
@@ -106,7 +112,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
                 drawCircle(canvas, false);
                 drawText(canvas, text);
                 drawScore(canvas);
-                drawImage(canvas);
+                //drawImage(canvas);
 
                 //location of paddle
                 int x2 = 0, y2 = 0;
@@ -142,7 +148,6 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
      * @param c the canvas being drawn on
      */
     public void clearScreen(Canvas c) {
-        int RED = 0, GREEN = 0, BLUE = 0;
         if (firstTime) {
             //This fills the screen with a random color (r,g,b).
             Random redR = new Random();
@@ -217,7 +222,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
     }
 
     /**
-     *Draws the target the circle.
+     * Draws the target circle.
      * @param c
      * @param change
      */
@@ -230,7 +235,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
             }
         }
         sharedPaint.setStyle(Paint.Style.STROKE);
-        sharedPaint.setStrokeWidth(1);
+        sharedPaint.setStrokeWidth(2);
         sharedPaint.setColor(Color.WHITE);
         c.drawCircle(Cx, Cy, Cr, sharedPaint);
     }
@@ -252,7 +257,8 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
 
         //Update the location of the touchTrackerPaddle
         touchTrackerPaddle.setX((int) event.getX());
-        touchTrackerPaddle.setY((int) event.getY());
+        touchTrackerPaddle.setY(yval);
+        //touchTrackerPaddle.setY((int) event.getY());
         return true;
     }
 

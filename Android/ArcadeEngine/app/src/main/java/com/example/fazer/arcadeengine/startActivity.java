@@ -44,5 +44,6 @@ public class startActivity extends Activity {
         // TODO Auto-generated method stub
         super.onPause();
         mySurfaceView.onPauseMySurfaceView();
+        finish();
     }
 }

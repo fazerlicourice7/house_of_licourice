@@ -21,6 +21,7 @@ public class PongBall {
     long startTime;
     static int radius;
     static int side;
+    int hitTime;
 
     final int LOSE = 0;
 
@@ -116,7 +117,7 @@ public class PongBall {
 
         y += dy;
         //Bounce off walls
-        if (y > c.getHeight() - radius) {
+        if ((y - radius) > c.getHeight()) { //
             if (!WINorLOSE.donePlaying)
                 StartSecondActivity.startSecondActivity(LOSE, startActivity.SCORE);
         }
@@ -125,11 +126,13 @@ public class PongBall {
             yVel = -yVel;
         }
 
+        int nowtime = (int) (System.currentTimeMillis() / 1000);
         if (x2 != 0 && y2 != 0) {
             //bounce off paddle
             if ((x + radius) >= Lx && (x - radius) <= Rx && (y + radius) >= Ty && (y - radius) <= By) { // is within paddle
+                hitTime = (int) (System.currentTimeMillis() / 1000);
                 Log.d("ball", "is within paddle");
-                if (Math.abs((x + radius) - x2) >= (side - 1)) {
+                if (Math.abs((x + radius) - x2) <= side) {
                     if (x - x2 > 0) {
                         Log.d("Position", "right");
                         x = Rx + radius;
@@ -139,14 +142,12 @@ public class PongBall {
                     } else
                         Log.d("Position", "In the center");
                     xVel = -xVel;
-
                     if (xVel > 0)
-                        xVel++;
+                        xVel -= (xVel - 150) / 2;
                     else
-                        xVel--;
-
+                        xVel += (xVel + 150) / 2;
                 }
-                if (Math.abs((y + radius) - y2) >= (side - 1)) {
+                if (Math.abs((y + radius) - y2) <= side) {
                     if (y - y2 > 0) {
                         Log.d("Position", "bottom");
                         y = By + radius;
@@ -159,11 +160,15 @@ public class PongBall {
                     yVel = -yVel;
 
                     if (yVel > 0)
-                        yVel++;
+                        yVel -= (yVel - 150) / 2;
                     else
-                        yVel--;
+                        yVel += (yVel + 150) / 2;
                 }
             }
+        }
+        if (nowtime > hitTime) {
+            xVel += (nowtime - hitTime) / 2;
+            yVel += (nowtime - hitTime) / 2;
         }
     }
 }
