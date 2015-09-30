@@ -49,7 +49,7 @@ public class PongBall {
     }
 
     public int getY() {
-        return (int) x;
+        return (int) y;
     }
 
     //Modifiers
@@ -86,6 +86,8 @@ public class PongBall {
      */
     public void animate(int x2, int y2, int xSide, int ySide, Canvas c) {
 
+        //Log.d("X side PB", String.valueOf(xSide));
+        //Log.d("Y side PB", String.valueOf(ySide));
         //outside coordinates of the paddle
         int Lx, By, Rx, Ty;
         Lx = x2 - xSide;
@@ -128,45 +130,46 @@ public class PongBall {
         //int nowtime = (int) (System.currentTimeMillis() / 1000);
         if (x2 != 0 && y2 != 0) {
             //bounce off paddle
-            if ((x + radius) >= Lx && (x - radius) <= Rx && (y + radius) >= Ty && (y - radius) <= By) { // is within paddle
+            if ((x + radius) >= Lx && (x - radius) <= Rx && (y + radius) >= Ty) { // is within paddle
                 //hitTime = (int) (System.currentTimeMillis() / 1000);
                 Log.d("ball", "is within paddle");
                 if (Math.abs((x + radius) - x2) <= xSide) {
                     if (x - x2 > 0) {
-                        Log.d("Position", "right");
+                        //Log.d("Position", "right");
                         x = Rx + radius;
                     } else if (x - x2 < 0) {
-                        Log.d("Position", "left");
+                        //Log.d("Position", "left");
                         x = Lx - radius;
                     } else
-                        Log.d("Position", "In the center");
+                        //Log.d("Position", "In the center");
                     xVel = -xVel;
-                    /*
+
                     if (xVel > 0)
                         xVel -= (xVel - 150) / 2;
                     else
-                        xVel += (xVel + 150) / 2; */
+                        xVel += (xVel + 150) / 2;
                 }
                 if (Math.abs((y + radius) - y2) <= ySide) {
                     if (y - y2 > 0) {
-                        Log.d("Position", "bottom");
+                        //Log.d("Position", "bottom");
                         y = By + radius;
                     } else if (y - y2 < 0) {
-                        Log.d("Position", "top");
+                        //Log.d("Position", "top");
                         y = Ty - radius;
                     } else
-                        Log.d("Position", "In the center");
+                        //Log.d("Position", "In the center");
 
                     yVel = -yVel;
 
-                    /*if (yVel > 0)
+                    if (yVel > 0)
                         yVel -= (yVel - 150) / 2;
                     else
-                        yVel += (yVel + 150) / 2; */
+                        yVel += (yVel + 150) / 2;
                 }
             }
         }
-        /*if (nowtime > hitTime) {
+        /*
+        if (nowtime > hitTime) {
             xVel += (nowtime - hitTime) / 2;
             yVel += (nowtime - hitTime) / 2;
         } */

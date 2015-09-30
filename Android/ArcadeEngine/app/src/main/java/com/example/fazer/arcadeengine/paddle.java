@@ -37,7 +37,7 @@ public class paddle {
     }
 
     public int getY() {
-        return (int) x;
+        return (int) y;
     }
 
     //Modifiers

@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -97,6 +98,9 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
                 paddlehl = (int) (canvas.getHeight()  - canvas.getHeight() / 10.5);
                 yval = paddlehl + ySide;
 
+                //Log.d("X side aS", String.valueOf(xSide));
+                //Log.d("Y side aS", String.valueOf(ySide));
+
                 /**
                  * =====================================================================
                  * This is where the actual drawing on the canvas takes place.
@@ -119,6 +123,8 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
                     x2 = touchTrackerPaddle.getX();
                     y2 = touchTrackerPaddle.getY();
                 }
+                //Log.d("paddle Y", String.valueOf(y2));
+                //Log.d("paddle X", String.valueOf(x2));
 
                 //Animating and drawing movable objects.
                 ball.animate(x2, y2, xSide, ySide, canvas);
