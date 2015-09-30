@@ -130,10 +130,11 @@ public class PongBall {
         //int nowtime = (int) (System.currentTimeMillis() / 1000);
         if (x2 != 0 && y2 != 0) {
             //bounce off paddle
-            if ((x + radius) >= Lx && (x - radius) <= Rx && (y + radius) >= Ty) { // is within paddle
+            if ((x + radius) >= Lx && (x - radius) <= Rx && (y + radius) >= Ty) { // is within paddle  NOT REACHING THIS!!!!!
                 //hitTime = (int) (System.currentTimeMillis() / 1000);
                 Log.d("ball", "is within paddle");
                 if (Math.abs((x + radius) - x2) == xSide) {
+                    Log.e("X stuff", "true");
                     xVel = -xVel;
                     if (x - x2 > 0) {
                         //Log.d("Position", "right");
@@ -150,6 +151,7 @@ public class PongBall {
                         xVel += (xVel + 150) / 2; */
                 }
                 if (Math.abs((y + radius) - y2) == ySide) {
+                    Log.e("Y stuff", "true");
                     yVel = -yVel;
                     if (y - y2 > 0) {
                         //Log.d("Position", "bottom");
