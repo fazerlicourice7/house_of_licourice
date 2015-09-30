@@ -84,15 +84,15 @@ public class PongBall {
      * @param y2 the y coordinate of the paddle
      * @param c  the Canvas being drawn on.
      */
-    public void animate(int x2, int y2, Canvas c) {
+    public void animate(int x2, int y2, int xSide, int ySide, Canvas c) {
 
         //outside coordinates of the paddle
         int Lx, By, Rx, Ty;
-        Lx = x2 - side;
-        Rx = x2 + side;
+        Lx = x2 - xSide;
+        Rx = x2 + xSide;
 
-        Ty = y2 - side;
-        By = y2 + side;
+        Ty = y2 - ySide;
+        By = y2 + ySide;
 
         /*
         Because the Android system is a bit irregular in its time sharing,
@@ -131,7 +131,7 @@ public class PongBall {
             if ((x + radius) >= Lx && (x - radius) <= Rx && (y + radius) >= Ty && (y - radius) <= By) { // is within paddle
                 //hitTime = (int) (System.currentTimeMillis() / 1000);
                 Log.d("ball", "is within paddle");
-                if (Math.abs((x + radius) - x2) <= side) {
+                if (Math.abs((x + radius) - x2) <= xSide) {
                     if (x - x2 > 0) {
                         Log.d("Position", "right");
                         x = Rx + radius;
@@ -147,7 +147,7 @@ public class PongBall {
                     else
                         xVel += (xVel + 150) / 2; */
                 }
-                if (Math.abs((y + radius) - y2) <= side) {
+                if (Math.abs((y + radius) - y2) <= ySide) {
                     if (y - y2 > 0) {
                         Log.d("Position", "bottom");
                         y = By + radius;

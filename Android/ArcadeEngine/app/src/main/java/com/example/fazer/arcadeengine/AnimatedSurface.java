@@ -36,7 +36,6 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
     int Cx = 100, Cy = 100, Cr = 60;
     boolean firstTime = true;
     String text = "Get the ball into the circle";
-    int SCORE = 0;
     int RED = 0, GREEN = 0, BLUE = 0;
     int paddlehl, yval;
 
@@ -122,7 +121,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
                 }
 
                 //Animating and drawing movable objects.
-                ball.animate(x2, y2, canvas);
+                ball.animate(x2, y2, xSide, ySide, canvas);
                 ball.draw(canvas, ballR);
                 if (touchTrackerPaddle != null) //No tracker paddle  appears until first touch.
                     touchTrackerPaddle.drawRect(canvas, xSide, ySide);
@@ -131,7 +130,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
                 if (running) {
                     //If the user gets the pong ball in the circle, start a new Activity
                     if (inCircle(ball.getX(), ball.getY())) {
-                        SCORE++;
+                        startActivity.SCORE++;
                         drawCircle(canvas, true);
                     }
                 }
@@ -185,7 +184,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
         pen.setColor(Color.BLACK);
         pen.setTypeface(Typeface.SANS_SERIF);
         pen.setTextSize(45);
-        c.drawText(text, 0, c.getHeight() / 10, pen);
+        c.drawText(text, 0, c.getHeight() / 8, pen);
     }
 
     /**
@@ -198,10 +197,10 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
         scorePen.setStrokeWidth(2);
         scorePen.setColor(Color.BLACK);
         scorePen.setTypeface(Typeface.SANS_SERIF);
-        scorePen.setTextSize(30);
+        scorePen.setTextSize(40);
         int x = 9 * c.getWidth() / 10;//bound to change
-        int y = c.getHeight() / 20;
-        c.drawText(String.valueOf(SCORE), x, y, scorePen);
+        int y = c.getHeight() / 15;
+        c.drawText(String.valueOf(startActivity.SCORE), x, y, scorePen);
     }
 
     /**

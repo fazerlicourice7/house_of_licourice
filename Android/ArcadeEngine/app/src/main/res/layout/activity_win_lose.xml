@@ -13,16 +13,6 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"/>
 
-    <Button
-        android:id="@+id/quit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="quit"
-        android:text="@string/quit"
-        android:layout_gravity="center_horizontal"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
     <TextView
         android:id="@+id/score"
         android:textSize="80px"
@@ -31,6 +21,7 @@
         android:layout_above="@+id/WINlose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
     <TextView
         android:textSize="100px"
         android:id="@+id/WINlose"
@@ -39,13 +30,23 @@
         android:layout_above="@+id/quit"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="106dp" />
+
+    <Button
+        android:id="@+id/quit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="quit"
+        android:text="@string/quit"
+        android:layout_above="@+id/retry"
+        android:layout_centerHorizontal="true" />
+
     <Button
         android:id="@+id/retry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="playAgain"
         android:text="@string/retry"
-        android:layout_marginTop="47dp"
-        android:layout_below="@+id/quit"
+        android:layout_marginBottom="60dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>
