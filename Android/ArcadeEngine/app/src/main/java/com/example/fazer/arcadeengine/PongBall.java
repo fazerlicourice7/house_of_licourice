@@ -133,38 +133,37 @@ public class PongBall {
             if ((x + radius) >= Lx && (x - radius) <= Rx && (y + radius) >= Ty) { // is within paddle
                 //hitTime = (int) (System.currentTimeMillis() / 1000);
                 Log.d("ball", "is within paddle");
-                if (Math.abs((x + radius) - x2) <= xSide) {
+                if (Math.abs((x + radius) - x2) == xSide) {
+                    xVel = -xVel;
                     if (x - x2 > 0) {
                         //Log.d("Position", "right");
                         x = Rx + radius;
                     } else if (x - x2 < 0) {
                         //Log.d("Position", "left");
                         x = Lx - radius;
-                    } else
-                        //Log.d("Position", "In the center");
-                    xVel = -xVel;
+                    }
 
+/*
                     if (xVel > 0)
                         xVel -= (xVel - 150) / 2;
                     else
-                        xVel += (xVel + 150) / 2;
+                        xVel += (xVel + 150) / 2; */
                 }
-                if (Math.abs((y + radius) - y2) <= ySide) {
+                if (Math.abs((y + radius) - y2) == ySide) {
+                    yVel = -yVel;
                     if (y - y2 > 0) {
                         //Log.d("Position", "bottom");
                         y = By + radius;
                     } else if (y - y2 < 0) {
                         //Log.d("Position", "top");
                         y = Ty - radius;
-                    } else
-                        //Log.d("Position", "In the center");
+                    }
 
-                    yVel = -yVel;
 
-                    if (yVel > 0)
+                   /* if (yVel > 0)
                         yVel -= (yVel - 150) / 2;
                     else
-                        yVel += (yVel + 150) / 2;
+                        yVel += (yVel + 150) / 2; */
                 }
             }
         }
