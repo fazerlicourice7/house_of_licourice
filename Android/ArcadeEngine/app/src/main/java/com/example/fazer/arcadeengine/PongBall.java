@@ -20,7 +20,6 @@ public class PongBall {
     long prevTime;
     long startTime;
     static int radius;
-    static int side;
     int hitTime;
 
     final int LOSE = 0;
@@ -33,8 +32,8 @@ public class PongBall {
         x = 200;
         y = 200;
         radius = 20;
-        xVel = 150;
-        yVel = 150;
+        xVel = 200;
+        yVel = 200;
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setStrokeWidth(3);
         paint.setColor(Color.GREEN);
@@ -134,32 +133,7 @@ public class PongBall {
                 //hitTime = (int) (System.currentTimeMillis() / 1000);
                 Log.d("ball", "is within paddle");
                 //SOMETHING NOT WORKING HERE!
-                if (Math.abs((x + radius) - x2) == xSide - 1) { //left
-                    Log.d("X stuff", "left");
-
-                    xVel = -xVel;
-
-                    x = Lx - radius;
-
-                  /* if (xVel > 0)
-                        xVel -= (xVel - 150) / 2;
-                    else
-                        xVel += (xVel + 150) / 2; */
-                } else if(Math.abs((x - radius) - x2) == xSide - 1){ //right
-                    Log.d("X stuff", "right");
-
-                    xVel = -xVel;
-
-                    x = Rx + radius;
-
-                   /* if (xVel > 0)
-                        xVel -= (xVel - 150) / 2;
-                    else
-                        xVel += (xVel + 150) / 2; */
-                } else
-                    Log.d("X stuff", "something's wrong");
-                //SOMETHING NOT WORKING HERE!
-                if (Math.abs((y + radius) - y2) == ySide - 1) { //top
+                if (Math.abs(y + radius - y2) <= ySide) { //top
                     Log.d("Y stuff", "top");
 
                     yVel = -yVel;
@@ -170,7 +144,7 @@ public class PongBall {
                         yVel -= (yVel - 150) / 2;
                     else
                         yVel += (yVel + 150) / 2; */
-                } else if (Math.abs((y - radius) - y2) == ySide - 1) { // bottom
+                } else if (Math.abs(y - radius - y2) <= ySide) { // bottom
                     Log.d("Y stuff", "bottom");
                     yVel = -yVel;
 
@@ -180,8 +154,29 @@ public class PongBall {
                         yVel -= (yVel - 150) / 2;
                     else
                         yVel += (yVel + 150) / 2; */
-                } else
-                    Log.d("Y stuff", "something's wrong");
+                } else if (Math.abs(x + radius - x2) <= xSide) { //left
+                    Log.d("X stuff", "left");
+
+                    xVel = -xVel;
+
+                    x = Lx - radius;
+
+                  /* if (xVel > 0)
+                        xVel -= (xVel - 150) / 2;
+                    else
+                        xVel += (xVel + 150) / 2; */
+                } else if (Math.abs(x - radius - x2) <= xSide) { //right
+                    Log.d("X stuff", "right");
+
+                    xVel = -xVel;
+
+                    x = Rx + radius;
+
+                   /* if (xVel > 0)
+                        xVel -= (xVel - 150) / 2;
+                    else
+                        xVel += (xVel + 150) / 2; */
+                }
             }
         }
         /*

@@ -92,8 +92,11 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
                 Canvas canvas = surfaceHolder.lockCanvas();
 
                 int ballR = canvas.getHeight() / 64;
+                Log.d("BallR", String.valueOf(ballR));
                 int xSide = canvas.getWidth() / 10;
+                Log.d("xSide", String.valueOf(xSide));
                 int ySide = canvas.getHeight() / 21;
+                Log.d("ySide", String.valueOf(ySide));
 
                 paddlehl = (int) (canvas.getHeight()  - canvas.getHeight() / 10.5);
                 yval = paddlehl + ySide;

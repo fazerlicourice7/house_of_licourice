@@ -23,12 +23,12 @@ public class paddle {
     /**
      * Draws a rectangle with the specified outer dimensions.
      * @param c
-     * @param width
-     * @param length
+     * @param widthH
+     * @param lengthH
      */
-    public void drawRect(Canvas c, int width, int length) {
+    public void drawRect(Canvas c, int widthH, int lengthH) {
         //params : left, top, right, bottom
-        c.drawRect(x - (width / 2), y + (length / 2), x + (width / 2), y - (length / 2), paint);
+        c.drawRect(x - widthH, y + lengthH, x + widthH, y - lengthH, paint);
     }
 
     //Accessors
