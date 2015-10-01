@@ -133,40 +133,55 @@ public class PongBall {
             if ((x + radius) >= Lx && (x - radius) <= Rx && (y + radius) >= Ty) { // is within paddle  NOT REACHING THIS!!!!!
                 //hitTime = (int) (System.currentTimeMillis() / 1000);
                 Log.d("ball", "is within paddle");
-                if (Math.abs((x + radius) - x2) == xSide) {
-                    Log.e("X stuff", "true");
-                    xVel = -xVel;
-                    if (x - x2 > 0) {
-                        //Log.d("Position", "right");
-                        x = Rx + radius;
-                    } else if (x - x2 < 0) {
-                        //Log.d("Position", "left");
-                        x = Lx - radius;
-                    }
+                //SOMETHING NOT WORKING HERE!
+                if (Math.abs((x + radius) - x2) == xSide - 1) { //left
+                    Log.d("X stuff", "left");
 
-/*
-                    if (xVel > 0)
+                    xVel = -xVel;
+
+                    x = Lx - radius;
+
+                  /* if (xVel > 0)
                         xVel -= (xVel - 150) / 2;
                     else
                         xVel += (xVel + 150) / 2; */
-                }
-                if (Math.abs((y + radius) - y2) == ySide) {
-                    Log.e("Y stuff", "true");
-                    yVel = -yVel;
-                    if (y - y2 > 0) {
-                        //Log.d("Position", "bottom");
-                        y = By + radius;
-                    } else if (y - y2 < 0) {
-                        //Log.d("Position", "top");
-                        y = Ty - radius;
-                    }
+                } else if(Math.abs((x - radius) - x2) == xSide - 1){ //right
+                    Log.d("X stuff", "right");
 
+                    xVel = -xVel;
+
+                    x = Rx + radius;
+
+                   /* if (xVel > 0)
+                        xVel -= (xVel - 150) / 2;
+                    else
+                        xVel += (xVel + 150) / 2; */
+                } else
+                    Log.d("X stuff", "something's wrong");
+                //SOMETHING NOT WORKING HERE!
+                if (Math.abs((y + radius) - y2) == ySide - 1) { //top
+                    Log.d("Y stuff", "top");
+
+                    yVel = -yVel;
+
+                    y = Ty - radius;
 
                    /* if (yVel > 0)
                         yVel -= (yVel - 150) / 2;
                     else
                         yVel += (yVel + 150) / 2; */
-                }
+                } else if (Math.abs((y - radius) - y2) == ySide - 1) { // bottom
+                    Log.d("Y stuff", "bottom");
+                    yVel = -yVel;
+
+                    y = By + radius;
+
+                   /* if (yVel > 0)
+                        yVel -= (yVel - 150) / 2;
+                    else
+                        yVel += (yVel + 150) / 2; */
+                } else
+                    Log.d("Y stuff", "something's wrong");
             }
         }
         /*
