@@ -56,6 +56,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
      * This method (re)starts the animation Thread when this Surface resumes.
      */
     public void onResumeMySurfaceView() {
+        ((Activity) getContext()).finish();
         running = true;
         thread = new Thread(this);
         thread.start();
@@ -65,7 +66,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
      * This method stops the Thread when paused.
      */
     public void onPauseMySurfaceView() {
-        ((Activity)getContext()).finish();
+        ((Activity) getContext()).finish();
         boolean retry = true;
         running = false;
         while (retry) {
@@ -101,7 +102,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
                 int ySide = canvas.getHeight() / 42;
                 //Log.d("ySide", String.valueOf(ySide));
 
-                paddlehl = (int) (canvas.getHeight()  - canvas.getHeight() / 10.5);
+                paddlehl = (int) (canvas.getHeight() - canvas.getHeight() / 10.5);
                 yval = paddlehl + ySide;
 
                 //Log.d("X side aS", String.valueOf(xSide));
@@ -234,6 +235,7 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
 
     /**
      * Draws the target circle.
+     *
      * @param c
      * @param change
      */

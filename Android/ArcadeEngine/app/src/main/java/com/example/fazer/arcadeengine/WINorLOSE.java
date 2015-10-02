@@ -56,6 +56,7 @@ public class WINorLOSE extends Activity
     public void onPause(){
         super.onPause();
         AnimatedSurface.running = true;
+        finish();
     }
 
     private void WIN(TextView loseWin){ loseWin.setText("You Win!!"); }
