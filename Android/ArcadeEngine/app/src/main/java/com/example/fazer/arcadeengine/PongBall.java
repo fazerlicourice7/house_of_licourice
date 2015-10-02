@@ -131,59 +131,23 @@ public class PongBall {
             //bounce off paddle
             if ((x + radius) >= Lx && (x - radius) <= Rx && (y + radius) >= Ty) { // is within paddle  NOT REACHING THIS!!!!!
                 //hitTime = (int) (System.currentTimeMillis() / 1000);
-                Log.d("ball", "is within paddle");
+                //Log.d("ball", "is within paddle");
                 //SOMETHING NOT WORKING HERE!
                 if (Math.abs(y + radius - y2) <= ySide) { //top
-                    Log.d("Y stuff", "top");
-
                     yVel = -yVel;
-
                     y = Ty - radius;
-
-                   /* if (yVel > 0)
-                        yVel -= (yVel - 150) / 2;
-                    else
-                        yVel += (yVel + 150) / 2; */
                 } else if (Math.abs(y - radius - y2) <= ySide) { // bottom
-                    Log.d("Y stuff", "bottom");
                     yVel = -yVel;
-
                     y = By + radius;
-
-                   /* if (yVel > 0)
-                        yVel -= (yVel - 150) / 2;
-                    else
-                        yVel += (yVel + 150) / 2; */
                 } else if (Math.abs(x + radius - x2) <= xSide) { //left
-                    Log.d("X stuff", "left");
-
                     xVel = -xVel;
-
                     x = Lx - radius;
-
-                  /* if (xVel > 0)
-                        xVel -= (xVel - 150) / 2;
-                    else
-                        xVel += (xVel + 150) / 2; */
                 } else if (Math.abs(x - radius - x2) <= xSide) { //right
-                    Log.d("X stuff", "right");
-
                     xVel = -xVel;
-
                     x = Rx + radius;
-
-                   /* if (xVel > 0)
-                        xVel -= (xVel - 150) / 2;
-                    else
-                        xVel += (xVel + 150) / 2; */
                 }
             }
         }
-        /*
-        if (nowtime > hitTime) {
-            xVel += (nowtime - hitTime) / 2;
-            yVel += (nowtime - hitTime) / 2;
-        } */
     }
 }
 

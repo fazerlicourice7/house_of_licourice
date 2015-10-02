@@ -92,11 +92,14 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
                 Canvas canvas = surfaceHolder.lockCanvas();
 
                 int ballR = canvas.getHeight() / 64;
-                Log.d("BallR", String.valueOf(ballR));
-                int xSide = canvas.getWidth() / 10;
-                Log.d("xSide", String.valueOf(xSide));
-                int ySide = canvas.getHeight() / 21;
-                Log.d("ySide", String.valueOf(ySide));
+
+                //Log.d("BallR", String.valueOf(ballR));
+
+                int xSide = canvas.getWidth() / 20;
+                //Log.d("xSide", String.valueOf(xSide));
+
+                int ySide = canvas.getHeight() / 42;
+                //Log.d("ySide", String.valueOf(ySide));
 
                 paddlehl = (int) (canvas.getHeight()  - canvas.getHeight() / 10.5);
                 yval = paddlehl + ySide;
@@ -237,10 +240,10 @@ public class AnimatedSurface extends SurfaceView implements Runnable {
     public void drawCircle(Canvas c, boolean change) {
         if (change) {
             Cx = random.nextInt(c.getWidth());
-            Cy = random.nextInt(c.getHeight());
             while (Cr < PongBall.radius) {
                 Cr = random.nextInt(c.getWidth() / 2);
             }
+            Cy = random.nextInt(paddlehl - Cr);
         }
         sharedPaint.setStyle(Paint.Style.STROKE);
         sharedPaint.setStrokeWidth(2);
