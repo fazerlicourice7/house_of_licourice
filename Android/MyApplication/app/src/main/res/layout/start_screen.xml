@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"/>
+
+<LinearLayout android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:id="@+id/imageView"
+        android:background="@drawable/studio"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="4" />
+
+    <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:orientation="vertical"
+       android:gravity="center"
+       android:layout_weight="3"
+       >
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3 by 3"
+            android:background="@drawable/button"
+            android:id="@+id/button"
+             />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="3"
+        >
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:text="8 by 8"
+            android:id="@+id/button2"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="3"
+        >
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:text="12 by 12"
+            android:id="@+id/button3"
+            />
+    </LinearLayout>
+</LinearLayout>
+</FrameLayout>

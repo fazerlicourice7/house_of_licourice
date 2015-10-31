@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         Button STARTGAME = (Button) findViewById(R.id.startGame);
         STARTGAME.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-            start();
+            start(view);
             }
         });
     }
@@ -45,9 +45,10 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    protected void start(){
+    public void start(View view){
         Intent playGame = new Intent(this, startActivity.class);
         startActivity(playGame);
         finish();
     }
+
 }

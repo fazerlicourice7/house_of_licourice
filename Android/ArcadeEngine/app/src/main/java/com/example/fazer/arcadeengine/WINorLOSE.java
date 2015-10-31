@@ -2,6 +2,7 @@ package com.example.fazer.arcadeengine;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,8 @@ public class WINorLOSE extends Activity
         setContentView(R.layout.activity_win_lose);
         TextView loseWin = (TextView) findViewById(R.id.WINlose);
         TextView ScOrE = (TextView) findViewById(R.id.score);
+        loseWin.setTextColor(Color.WHITE);
+        ScOrE.setTextColor(Color.WHITE);
         Intent data = getIntent();
         int winLose = data.getIntExtra("winLose", -1);
         int SCORE = data.getIntExtra("score", 0);

@@ -29,6 +29,7 @@ public class paddle {
     public void drawRect(Canvas c, int widthH, int lengthH) {
         //params : left, top, right, bottom
         c.drawRect(x - widthH, y + lengthH, x + widthH, y - lengthH, paint);
+
     }
 
     //Accessors

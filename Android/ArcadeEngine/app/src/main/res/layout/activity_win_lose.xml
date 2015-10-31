@@ -1,52 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent" android:background="#000000"
+    android:layout_gravity="center">
 
-    <View
-        android:id="@+id/background"
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/android_image"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="false"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"/>
-
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center_horizontal">
     <TextView
         android:id="@+id/score"
-        android:textSize="80px"
-        android:textStyle="italic"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/WINlose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:textSize="100px"
-        android:id="@+id/WINlose"
+        android:text="0"
+        android:textColor="#ffffff"
+        android:textSize="80dp"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/quit"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="106dp" />
+        />
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:layout_gravity="center_horizontal">
+    <TextView
+        android:id="@+id/WINlose"
+        android:text="test"
+        android:textColor="#ffffff"
+        android:textSize="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center_horizontal">
     <Button
         android:id="@+id/quit"
+        android:background="@drawable/button_blue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="quit"
         android:text="@string/quit"
-        android:layout_above="@+id/retry"
-        android:layout_centerHorizontal="true" />
+        android:layout_gravity="center" />
+        </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center_horizontal">
     <Button
         android:id="@+id/retry"
+        android:background="@drawable/button_blue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="playAgain"
         android:text="@string/retry"
-        android:layout_marginBottom="60dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-</RelativeLayout>
+        android:layout_gravity="center"
+        />
+        </LinearLayout>
+</LinearLayout>
