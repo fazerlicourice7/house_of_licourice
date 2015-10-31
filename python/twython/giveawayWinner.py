@@ -30,14 +30,12 @@ while True:
       else:
         name = result["user"]["screen_name"]
       for specificTechWord in tech:
-        #hasBeenVerified = False
         if specificTechWord in Result:
           for fav in favorite:
             if fav in Result:
               try:
                 print("favorite-ing")
                 twitter.create_favorite(id=id)
-                #hasBeenVerified = True
                 break
               except TwythonError as favorited:
                 print(favorited)                     
@@ -46,20 +44,18 @@ while True:
               try:
                 print("retweeting")
                 twitter.retweet(id=id)
-                #hasBeenVerified = True
                 break
               except TwythonError as retweeted:
                 print(retweeted)
           for Follow in follow:
             if Follow in Result:
               try:
-                print("following")
-                twitter.create_friendship(screen_name=name)
-                #hasBeenVerified = True
+                if result["user"]["following"] == False:
+                  print("following")
+                  twitter.create_friendship(screen_name=name)
                 break
               except TwythonError as followed:
                 print(followed)
-          #if hasBeenVerified == True:
           break  
   except TwythonError as e:
     print(e)
@@ -67,5 +63,5 @@ while True:
   print("sleeping")
   time.sleep(60)
   print("done")
-  #break
+  break
 
