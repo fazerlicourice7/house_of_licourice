@@ -13,34 +13,34 @@ negativeWords = ["gleam.io","youtube","subscribe","twitch.tv","enter here"]
 
 while True:
   legit = False
-  myTweets = twitter.get_user_timeline(screen_name="bboyperfunctory", count = 3200)
+  myTweets = twitter.get_user_timeline(screen_name="bboyperfunctory", count = 200)
   print("got timeline results")
   for Tweet in myTweets:
     tweet=Tweet["text"].lower()
     id = Tweet["id_str"]
-    ot = Tweet["user"]["screen_name"]
-    if "bot" in ot:
+    name = Tweet["user"]["screen_name"]
+    if "bot" in name:
       print("encountered bot")
       try:
-        twitter.destry_friendship(ot)
-        twitter.destroy_retweet(id)
-        twitter.destroy_favorite(id)
+        twitter.destroy_status(id = id)
+        twitter.destroy_friendship(screen_name = name)
+        twitter.destroy_favorite(id = id)
       except TwythonError as error:
         print(error)
-      for positiveWord in positiveWords:
-        for negativeWord in negativeWords:
-          if positiveWord in tweet and negativeWord not in tweet:
-            legit = True
-            break
-        break
-      if legit == False:
-        print("removing tweet and follow if any")
-        try:
-          twitter.destry_friendship(ot)
-          twitter.destroy_retweet(id)
-          twitter.destroy_favorite(id)
-        except TwythonError as error:
-          print(error)
+    for positiveWord in positiveWords:
+      for negativeWord in negativeWords:
+        if positiveWord in tweet and negativeWord not in tweet:
+          legit = True
+          break
+      break
+    if legit == False:
+      print("removing tweet and follow if any")
+      try:
+        twitter.destroy_status(id = id)
+        twitter.destroy_friendship(screen_name = name)
+        twitter.destroy_favorite(id = id)
+      except TwythonError as error:
+        print(error)
   print("sleeping")
   time.sleep(3600)
-
+print("something happened that shouldn't have and I executed the loop")

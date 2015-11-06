@@ -1,6 +1,6 @@
 from twython import Twython, TwythonError
 import time
-from datetime import date
+from datetime import date as DATE
 
 app_key = "IUWZ4YKrripATv736Hq4krjiR"
 app_secret = "87gyigY1Nd2KdWcN3OsJBpaFQ0dluKwnhLUGsqi59libMCGKkT"
@@ -10,12 +10,16 @@ oauth_token_secret = "DzaZtCPwMqBfrvhpDSjittr5AHwlsIotTwed4oqHoi0LO"
 twitter = Twython(app_key, app_secret, oauth_token, oauth_token_secret)
 
 while True:
-  currentDate = date.today() 
-  tweets = twitter.get_user_timeline("bboyperfunctory")
-  for tweet in tweets["statuses"]:
+  currentDate = DATE.today().isoformat() 
+  currentDate = currentDate[5:]
+  currentMonth = currentDate[:2]
+  currentDay = int(currentDate[3:]) 
+  tweets = twitter.get_user_timeline(screen_name = "bboyperfunctory", exclude_replies = True, count = 200)
+  for tweet in tweets:
     date = tweet["created_at"]
     month = date[4:7]
     day = date[8:10]
+    day = int(day)
     if month == "Jan":
       Month = 1
     elif month == "Feb":
@@ -51,9 +55,25 @@ while True:
       else:
         totalDays += 30
     totalDays += day
-    if currentDay - totalDays > 28:
+    CurrentDate = 0
+    for i in range(int(currentMonth)):
+      if i == 2:
+        CurrentDate += 29
+      elif i < 8 and i%2 != 0:
+        CurrentDate += 31
+      elif i > 8 and i%2 == 0:
+        CurrentDate += 31
+      else:
+        CurrentDate += 30    
+    CurrentDate += currentDay
+    print(CurrentDate, " - ", totalDays)
+    if CurrentDate - totalDays > 21:
+      print("old")
       try:
-        twitter.destroy_friendship(tweet["user"]["screen_name"])
-        twitter.destroy_favorite(tweet["id_str"])
+        twitter.destroy_friendship(screen_name = tweet["user"]["screen_name"])
+        twitter.destroy_favorite(id_str = tweet["id_str"])
+        twitter.destroy_status(id_str = tweet["id_str"])
       except TwythonError as error:
         print(error)
+  print("sleeping")
+  time.sleep(86400)
