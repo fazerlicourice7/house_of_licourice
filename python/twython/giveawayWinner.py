@@ -10,16 +10,16 @@ twitter = Twython(app_key,app_secret,oauth_token,oauth_token_secret)
 
 tech = ["graphics card","amazon","computer","cpu","phone","android","ios","iphone","smart phone","memory","ram","macbook","imac","mac","windows","laptop","gaming","video game","bestBuy","gaming chair","peripherals","monitors","keyboards","mice","mouse","ipad","camera","video camera","4k","cs","cs:go","counter strike","csgo","xbox","x box","ps3","ps4","gamer","pokemon","controllers","headsets"] 
 giveaway = ["rt to win","rt and follow to win","rt 2 win","favorite to win", "fav to win", "follow me", "follow @","retweet and like","rt and like"]
-blacklist = ["enter here","i just won",""]
-badsite = ["gleam.io",""]
-badsiteLength = badsite.buffer_info()[1]
+blacklist = ["-enter here","i just won","giving away","via /r/"]
+badsite = ["gleam.io","theverge.com",".com","will give","subscribe","youtube","bit.ly",]
 
-favorite = ["favorite","fav","favourite"] 
-retweet = ["retweet","rt"] 
+favorite = ["favorite","fav","favourite"]
+retweet = ["retweet","rt"]
 follow = ["follow"]
 
+
 #giveaway += favorite + retweet + follow
-searchParam=" OR ".join(giveaway)
+searchParam=" OR ".join(giveaway) + " -".join(blacklist)
 
 while True:
   try:
@@ -28,13 +28,16 @@ while True:
       Result = result["text"].lower()
       id=result["id_str"]
       links = result["urls"]
+      name = result["user"]["screen_name"]
       if result["retweeted"] == False:
         hasLink = False
-        for i in range(badsiteLength):
-          if badsite[i] in links:
+        abot = false
+        for site in badsite:
+          if site in links:
             hasLink = True
-        if not hasLink:
-          name = result["user"]["screen_name"]
+        if "bot" in name or "retweet" in name:
+          abot = True
+        if not hasLink and not abot:
           for specificTechWord in tech:
             if specificTechWord in Result:
               for fav in favorite:
@@ -44,7 +47,7 @@ while True:
                     twitter.create_favorite(id=id)
                     break
                   except TwythonError as favorited:
-                    print(favorited)                     
+                    print(favorited)
               for rt in retweet:
                 if rt in Result:
                   try:
@@ -69,5 +72,5 @@ while True:
   print("sleeping")
   time.sleep(60)
   print("done")
-  break
+  #break
 
