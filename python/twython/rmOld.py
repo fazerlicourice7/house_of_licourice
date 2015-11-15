@@ -10,10 +10,10 @@ oauth_token_secret = "DzaZtCPwMqBfrvhpDSjittr5AHwlsIotTwed4oqHoi0LO"
 twitter = Twython(app_key, app_secret, oauth_token, oauth_token_secret)
 
 while True:
-  currentDate = DATE.today().isoformat() 
+  currentDate = DATE.today().isoformat()
   currentDate = currentDate[5:]
   currentMonth = currentDate[:2]
-  currentDay = int(currentDate[3:]) 
+  currentDay = int(currentDate[3:])
   tweets = twitter.get_user_timeline(screen_name = "bboyperfunctory", exclude_replies = True, count = 200)
   for tweet in tweets:
     date = tweet["created_at"]
@@ -28,7 +28,7 @@ while True:
       Month = 3
     elif month == "Apr":
       Month = 4
-    elif month == "May":   
+    elif month == "May":
       Month = 5
     elif month == "June":
       Month = 6
@@ -44,17 +44,17 @@ while True:
       Month = 11
     elif month == "Dec":
       Month = 12
-    totalDays = 0
+    dayOfTweet = 0
     for i in range(Month):
       if i == 2:
-        totalDays += 29
+        dayOfTweet += 29
       elif i < 8 and i%2 != 0:
-        totalDays += 31
+        dayOfTweet += 31
       elif i > 8 and i%2 == 0:
-        totalDays += 31
+        dayOfTweet += 31
       else:
-        totalDays += 30
-    totalDays += day
+        dayOfTweet += 30
+    dayOfTweet += day
     CurrentDate = 0
     for i in range(int(currentMonth)):
       if i == 2:
@@ -64,10 +64,10 @@ while True:
       elif i > 8 and i%2 == 0:
         CurrentDate += 31
       else:
-        CurrentDate += 30    
+        CurrentDate += 30
     CurrentDate += currentDay
-    print(CurrentDate, " - ", totalDays)
-    if CurrentDate - totalDays > 21:
+    print(CurrentDate, " - ", dayOfTweet, " = ", CurrentDate - dayOfTweet)
+    if CurrentDate - dayOfTweet > 21:
       print("old")
       try:
         twitter.destroy_friendship(screen_name = tweet["user"]["screen_name"])
