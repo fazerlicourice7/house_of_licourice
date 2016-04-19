@@ -43,6 +43,7 @@ public class EloChessRater {
 
     public void run() {
         Player player1 = new Player(), player2 = new Player();
+        int p1I = players.size(), p2I = players.size();
         player1.setName(player1Name);
         player2.setName(player2Name);
         r.setResult1(player1Result);
@@ -52,9 +53,11 @@ public class EloChessRater {
             if (p.getName().equals(player1Name)) {
                 r.setRating1(p.getRating());
                 player1.setRating(p.getRating());
+                p1I = players.indexOf(p);
             } else if (p.getName().equals(player2Name)) {
                 r.setRating2(p.getRating());
                 player2.setRating(p.getRating());
+                p2I = players.indexOf(p);
             }
         }
         if (r.getRating1() == 0) {
@@ -65,8 +68,15 @@ public class EloChessRater {
             r.setRating2(1200);
             player2.setRating(1200);
         }
-        players.remove(player1);
-        players.remove(player2);
+
+        try {
+            players.remove(p1I);
+        } catch (IndexOutOfBoundsException ex) {
+        }
+        try {
+            players.remove(p2I - 1);
+        } catch (IndexOutOfBoundsException e) {
+        }
         r.compute();
         player1.setRating(r.getRating1());
         player2.setRating(r.getRating2());

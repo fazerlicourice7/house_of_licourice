@@ -134,7 +134,13 @@ public class recordGame extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(recordGame.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        try {
+            viewPlayers view = new viewPlayers();
+            this.setVisible(false);
+            view.run();
+        } catch (IOException ex) {
+            Logger.getLogger(recordGame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_recordButtonActionPerformed
 
     public void run() {

@@ -73,19 +73,13 @@ public class viewPlayers extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void run() throws IOException {
-//        new viewPlayers().setVisible(true);
         ArrayList<Player> players;
         players = fileCom.readFile();
         for (Player p : players) {
-            System.out.println(p.toString());
             model.addElement(p.toString());
         }
         list.setModel(model);
-        list.setVisible(false);
-        list.setVisible(true);
-        list.repaint();
-        this.repaint();
-        new viewPlayers().setVisible(true);
+        this.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
