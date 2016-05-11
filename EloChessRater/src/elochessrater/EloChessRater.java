@@ -18,6 +18,7 @@ package elochessrater;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import org.python.util.PythonInterpreter;
 
 
 /**
@@ -32,6 +33,9 @@ public class EloChessRater {
     fileCommunicator fileCom;
     Rater r;
 
+    //Python Stuff
+    PythonInterpreter pyInterpreter;
+
     public EloChessRater(String p1N, String p2N, double p1R, double p2R) throws IOException {
         player1Name = p1N;
         player2Name = p2N;
@@ -40,6 +44,8 @@ public class EloChessRater {
         fileCom = new fileCommunicator();
         players = fileCom.readFile();
         r = new Rater();
+
+        pyInterpreter = new PythonInterpreter();
     }
 
     public void run() {
@@ -86,4 +92,8 @@ public class EloChessRater {
         fileCom.writeFile(players);
     }
 
+    private void tweetResult() {
+        String text;
+        if()
+    }
 }
