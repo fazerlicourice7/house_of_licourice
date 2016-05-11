@@ -75,10 +75,10 @@ public class fileCommunicator {
 
     public void writeFile(ArrayList<Player> players) {
         Charset charset = Charset.forName("US-ASCII");
+        //=======sort list by largest rating. display by rating highest first=========
         try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(file.toString()), charset)) {
-
             for (Player p : players) {
-                String wr = p.getName() + " " + p.getRating();
+                String wr = p.toString();
                 writer.write(wr);
                 writer.newLine();
             }
