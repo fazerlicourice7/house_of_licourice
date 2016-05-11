@@ -19,6 +19,7 @@ package elochessrater;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
 /**
  *
  * @author 18balanagav
