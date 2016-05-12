@@ -18,8 +18,9 @@ package elochessrater;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import org.python.core.PyObject;
+import org.python.core.PyString;
 import org.python.util.PythonInterpreter;
-
 
 /**
  *
@@ -93,7 +94,16 @@ public class EloChessRater {
     }
 
     private void tweetResult() {
-        String text;
-        if()
+        String text = "";
+        if (player1Result > player2Result) {
+            text = "";
+        } else if (player2Result > player1Result) {
+            text = "";
+        } else { // player1Result == player2Result
+            text = "";
+        }
+        pyInterpreter.exec("import twitter");
+        PyObject tweeter = pyInterpreter.get("twitter");
+        tweeter.__call__(new PyString(text));
     }
 }
