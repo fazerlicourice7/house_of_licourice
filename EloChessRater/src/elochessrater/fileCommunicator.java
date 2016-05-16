@@ -38,7 +38,7 @@ public class fileCommunicator {
 
     public fileCommunicator() throws IOException {
         f = System.getProperty("user.home");
-        dir = new File(f + "ChessRater");
+        dir = new File(f + "\\" + "ChessRater");
         if (!dir.exists()) {
             System.out.println("dir doesn't exist");
             dir.mkdir();
