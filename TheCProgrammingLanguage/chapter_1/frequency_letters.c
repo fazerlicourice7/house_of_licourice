@@ -5,7 +5,7 @@ int main(){
     int letters[25], input, i;
     for(i = 0; i < 26; i++)
         letters[i] = 0;
-    while((input = getchar()) != EOF){
+    while((input = getchar()) != '\n'){
         if(input == 'A'||input == 'a')
             letters[0]++;
         else if(input == 'B'||input == 'b')
